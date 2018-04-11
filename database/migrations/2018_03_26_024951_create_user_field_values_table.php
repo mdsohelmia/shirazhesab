@@ -21,6 +21,7 @@ class CreateUserFieldValuesTable extends Migration
             $table->enum('verified',['yes','no'])->default('no');
             $table->text('value')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

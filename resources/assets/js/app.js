@@ -8,6 +8,7 @@ require('./bootstrap');
 
 
 window.$.fn.dataTable = require('datatables.net-bs4');
+window.basictable = require('basictable');
 window.select2 = require('select2');
 window.mask = require('jquery-mask-plugin');
 
@@ -33,4 +34,5 @@ $(document).ready(function() {
         dir: "rtl",
         language: "fa"
     });
+    $('.table').basictable();
 });

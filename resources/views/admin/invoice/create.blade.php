@@ -10,7 +10,6 @@
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/persian-datepicker@latest/dist/css/persian-datepicker.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.basictable/1.0.8/basictable.min.css" />
 @endsection
 @section('content')
     <div class="row justify-content-center">
@@ -302,11 +301,5 @@
             });
         }
         makeAutoItems();
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.basictable/1.0.8/jquery.basictable.min.js"></script>
-    <script>
-        $(function() {
-            $('.table').basictable();
-        });
     </script>
 @endsection

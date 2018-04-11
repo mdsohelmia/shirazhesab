@@ -23,6 +23,7 @@ class CreateCardsTable extends Migration
             $table->string('account_number');
             $table->string('file');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

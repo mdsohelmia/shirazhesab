@@ -24,6 +24,7 @@ class CreateUserFieldsTable extends Migration
             $table->string('type'); //file,yesno,text,textarea,select,select-table,enabled
             $table->text('options')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

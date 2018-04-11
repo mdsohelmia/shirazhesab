@@ -31,7 +31,7 @@ class CreateTransactionsTable extends Migration
             $table->enum('status',['temporary','confirmed','accepted'])->default('confirmed');
 
             $table->integer('gateway_id')->nullable();
-            $table->string('gateway_order')->nullable();
+            $table->string('gateway_order_id')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

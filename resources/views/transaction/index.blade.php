@@ -2,10 +2,6 @@
 
 @section('title', "تراکنش ها - ")
 
-@section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.basictable/1.0.8/basictable.min.css" />
-@endsection
-
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -53,13 +49,4 @@
                 </div>
             </div>
 
-@endsection
-
-@section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.basictable/1.0.8/jquery.basictable.min.js"></script>
-    <script>
-        $(function() {
-            $('.table').basictable();
-        });
-    </script>
 @endsection

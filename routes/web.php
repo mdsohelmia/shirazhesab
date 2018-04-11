@@ -222,5 +222,13 @@ Route::prefix(Config('platform.admin-route'))->name('admin.')->group(function ()
     Route::post('/setting/insert', 'Admin\SettingController@insert')->name('setting.insert');
     Route::delete('/setting/delete/{id}', 'Admin\SettingController@delete')->name('setting.delete');
 
+
+    Route::get('/gateway', 'Admin\GatewayController@index')->name('gateway');
+    Route::get('/gateway/create', 'Admin\GatewayController@create')->name('gateway.create');
+    Route::get('/gateway/edit/{id}', 'Admin\GatewayController@edit')->name('gateway.edit');
+    Route::post('/gateway/update/{id}', 'Admin\GatewayController@update')->name('gateway.update');
+    Route::post('/gateway/insert', 'Admin\GatewayController@insert')->name('gateway.insert');
+    Route::delete('/gateway/delete/{id}', 'Admin\GatewayController@delete')->name('gateway.delete');
+
     Route::get('/app', 'Admin\AppController@index')->name('app');
 });

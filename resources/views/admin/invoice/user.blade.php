@@ -297,10 +297,4 @@
         makeAutoItems();
 
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.basictable/1.0.8/jquery.basictable.min.js"></script>
-    <script>
-        $(function() {
-            $('.table').basictable();
-        });
-    </script>
 @endsection

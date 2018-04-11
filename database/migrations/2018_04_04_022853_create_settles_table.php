@@ -23,6 +23,7 @@ class CreateSettlesTable extends Migration
             $table->dateTime('settled_at')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

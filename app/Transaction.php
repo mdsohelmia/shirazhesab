@@ -23,6 +23,11 @@ class Transaction extends Model
         return $this->belongsTo('App\Invoice');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function scopeBalance($query)
     {
         $query->where('invoice_id', null);
