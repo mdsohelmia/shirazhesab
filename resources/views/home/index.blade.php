@@ -25,6 +25,37 @@
         </div>
     </div>
     <div class="row justify-content-center mb-2">
+    @foreach($files as $file)
+        <div class="col-md-3 col-sm-3">
+            <div class="card mb-2">
+                <img class="card-img-top" src="{{ Storage::url($file->source) }}" alt="image" style="width:100%">
+                <div class="card-body">
+                    <h4 class="card-title"><a href="{{ route('file.view',['id'=>$file->id]) }}">{{$file->title}}</a></h4>
+                    <p class="card-text">
+                        @if($file->type == 'paid')
+                            قیمت:
+                            <strong>{{number_format($file->price)}}</strong> تومان
+                        @else
+                            <strong>رایگان</strong>
+                        @endif
+                        <br />
+                        {{$file->description}}</p>
+                    <div class="row">
+                        <div class="col"><a href="{{ route('file.view',['id'=>$file->id]) }}" class="btn btn-danger btn-block btn-sm"><i class="fa fa-eye"></i> مشاهده</a></div>
+                        @if($file->version_id)
+                            @if($file->type == 'paid')
+                                <div class="col"><a href="{{ route('file.add-cart',['id'=>$file->id]) }}" class="btn btn-warning btn-block btn-sm"><i class="fa fa-cart-plus"></i> خرید فایل</a></div>
+                            @else
+                                <div class="col"><a href="{{ route('file.download',['id'=>$file->id]) }}" class="btn btn-success btn-block btn-sm"><i class="fa fa-download"></i> دریافت فایل</a></div>
+                            @endif
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+        </div>
+    <div class="row justify-content-center mb-2">
         <div class="col-md-6 mb-2">
             <div class="card card-default">
                 <div class="card-header">
@@ -37,7 +68,6 @@
                                 <h5 class="mb-1">{{$article->title}}</h5>
                                 <small>انتشار:{{ jDate::forge($article->created_at)->format('Y/m/d') }}</small>
                             </div>
-                            <p class="mb-1">{{$article->description}}</p>
                         </a>
                     @endforeach
                 </ul>
@@ -46,16 +76,15 @@
         <div class="col-md-6 mb-2">
             <div class="card card-default">
                 <div class="card-header">
-                    آخرین فایل ها
+                    مباحث انجمن
                 </div>
                 <ul class="list-group list-group-flush">
-                    @foreach($files as $file)
-                        <a href="{{route('file.view', ['id'=>$file->id])}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                    @foreach($discussions as $discussion)
+                        <a href="{{route('discussion.view', ['id'=>$discussion->id])}}" class="list-group-item list-group-item-action flex-column align-items-start">
                             <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">{{$file->title}}</h5>
-                                <small>بروز رسانی:{{ jDate::forge($file->updated_at)->format('Y/m/d') }}</small>
+                                <h5 class="mb-1">{{$discussion->title}}</h5>
+                                <small>بروز رسانی:{{ jDate::forge($discussion->updated_at)->format('Y/m/d') }}</small>
                             </div>
-                            <p class="mb-1">{{$file->description}}</p>
                         </a>
                     @endforeach
                 </ul>

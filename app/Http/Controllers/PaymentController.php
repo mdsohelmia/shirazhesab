@@ -24,7 +24,7 @@ class PaymentController extends Controller
             $hash = password_hash($gateway->gateway_id . $gateway->payment_password . $request->gateway_order_id . $request->amount, PASSWORD_BCRYPT);
             $payment_hash = $request->hash;
             if($hash == $payment_hash) {
-                
+
             } else {
                 //CallBack with error with hashing
             }
