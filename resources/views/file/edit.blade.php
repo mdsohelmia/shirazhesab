@@ -90,6 +90,19 @@
                                 </div>
 
                                 <div class="form-group row">
+                                    <label for="top" class="col-md-4 col-form-label @lang('platform.input-pull')">ویژه</label>
+                                    <div class="col-md-7">
+                                        <select id="top" name="top" class="form-control{{ $errors->has('top') ? ' is-invalid' : '' }}">
+                                            <option value="yes"{{old('top',$file->top) == 'yes' ? ' selected' : ''}}>بلی</option>
+                                            <option value="no"{{old('top',$file->top) == 'no' ? ' selected' : ''}}>خیر</option>
+                                        </select>
+                                        @if ($errors->has('top'))
+                                            <span class="invalid-feedback"><strong>{{ $errors->first('top') }}</strong></span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
                                     <label for="price" class="col-md-4 col-form-label @lang('platform.input-pull')">قیمت</label>
                                     <div class="col-md-7">
                                         <div class="input-group mb-2 ml-sm-2">

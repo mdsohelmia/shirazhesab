@@ -20,7 +20,7 @@
         "laravel/tinker": "~1.0",
         "morilog/jalali": "^2.3",
         "nwidart/laravel-modules": "^3.0",
-        "shirazsoft/gateway": "^0.2.5",
+        "shirazsoft/gateway": "^0.3.0",
         "yajra/laravel-datatables-oracle": "^8.4"
     },
     "require-dev": {

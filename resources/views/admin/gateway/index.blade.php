@@ -39,7 +39,8 @@
                                 </td>
 
                                 <td>
-                                    <form method="post" action="{{ route('admin.transaction.delete',['id' => $transaction->id]) }}" style="display:inline;">
+                                    <a href="{{ route('admin.gateway.edit',[$gateway->id]) }}" class="btn btn-success btn-sm btn-mobile"><i class="fa fa-edit"></i> ویرایش</a>
+                                    <form method="post" action="{{ route('admin.gateway.delete',['id' => $gateway->id]) }}" style="display:inline;">
                                         @csrf
                                         @method('delete')
                                         <button onclick="return confirm('آیا از عملیات حذف اطمینان دارید؟')" class="btn btn-danger btn-sm btn-mobile"><i class="fa fa-trash"></i> حذف</button>

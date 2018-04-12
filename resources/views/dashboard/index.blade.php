@@ -45,7 +45,7 @@
                         <div class="card text-white bg-primary mb-2">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-3 col-3"><i class="fa fa-balance-scale fa-3x" aria-hidden="true"></i></div>
+                                    <div class="col-md-3 col-3"><i class="fa fa-database fa-3x" aria-hidden="true"></i></div>
                                     <div class="col-md-9 col-9">
                                         <h5 class="card-title">موجودی کل</h5>
                                         <p class="card-text" id="total_of_accounts"></p>

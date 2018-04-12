@@ -83,8 +83,8 @@ class FileController extends Controller
                 'price' => 'numeric|min:'.config('platform.min-payment-price'),
                 'type' => 'required',
                 'source' => 'required|image',
-                'learn_link' => 'url',
-                'support_link' => 'url',
+                'learn_link' => 'nullable|url',
+                'support_link' => 'nullable|url',
             ]);
         } else {
             $request->validate([
@@ -92,8 +92,8 @@ class FileController extends Controller
                 'text' => 'required|string',
                 'type' => 'required',
                 'source' => 'required|image',
-                'learn_link' => 'url',
-                'support_link' => 'url',
+                'learn_link' => 'nullable|url',
+                'support_link' => 'nullable|url',
             ]);
         }
         $file = new File();
@@ -105,6 +105,7 @@ class FileController extends Controller
         $file->published = $request->published;
         $file->support_link = $request->support_link;
         $file->learn_link = $request->learn_link;
+        $file->top = $request->top;
         $file->type = $request->type;
         $file->source = $request->file('source')->store('public');
         $file->user_id = Auth::user()->id;
@@ -135,8 +136,8 @@ class FileController extends Controller
                 'price' => 'numeric|min:'.config('platform.min-payment-price'),
                 'type' => 'required',
                 'source' => 'image',
-                'learn_link' => 'url',
-                'support_link' => 'url',
+                'learn_link' => 'nullable|url',
+                'support_link' => 'nullable|url',
             ]);
         } else {
             $request->validate([
@@ -144,14 +145,15 @@ class FileController extends Controller
                 'text' => 'required|string',
                 'type' => 'required',
                 'source' => 'image',
-                'learn_link' => 'url',
-                'support_link' => 'url',
+                'learn_link' => 'nullable|url',
+                'support_link' => 'nullable|url',
             ]);
         }
         $file = File::findOrFail($id);
         $file->title = $request->title;
         $file->category_id = $request->category_id;
         $file->description = $request->description;
+        $file->top = $request->top;
         $file->text = $request->text;
         $file->price = $request->price;
         $file->published = $request->published;

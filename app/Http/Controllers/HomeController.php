@@ -18,7 +18,7 @@ class HomeController extends Controller
     public function index()
     {
         $articles = Article::limit(5)->orderBy('created_at', 'desc')->get();
-        $files = File::limit(5)->orderBy('updated_at', 'desc')->get();
+        $files = File::top()->limit(4)->orderBy('updated_at', 'desc')->get();
         $discussions = Discussion::limit(5)->orderBy('updated_at', 'desc')->get();
         $page = Page::findWithCache(config('platform.index-page-id'));
         return view('home.index',['page' => $page, 'files' => $files, 'articles' => $articles, 'discussions' => $discussions]);

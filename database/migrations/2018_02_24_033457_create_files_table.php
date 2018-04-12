@@ -23,6 +23,7 @@ class CreateFilesTable extends Migration
             $table->integer('version_id')->nullable();
             $table->enum('type',['free','paid'])->default('paid');
             $table->enum('published',['yes','no'])->default('no');
+            $table->enum('top',['yes','no'])->default('no');
             $table->decimal('price', 15, 0)->nullable();
             $table->longText('text')->nullable();
             $table->text('description')->nullable();

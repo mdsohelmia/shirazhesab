@@ -36,4 +36,9 @@ class File extends Model
     {
         return $query->where('published', 'yes');
     }
+
+    public function scopeTop($query)
+    {
+        return $query->where('top', 'yes');
+    }
 }

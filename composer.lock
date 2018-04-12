@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0fd958b9161bd9950cd5231c4cfc961c",
+    "content-hash": "8cf05896bee8bd8b4c9a3eb61fae3a67",
     "packages": [
         {
             "name": "axdlee/laravel-config-writer",
@@ -309,16 +309,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "2.1.3",
+            "version": "2.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "1bec00a10039b823cc94eef4eddd47dcd3b2ca04"
+                "reference": "8790f594151ca6a2010c6218e09d96df67173ad3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/1bec00a10039b823cc94eef4eddd47dcd3b2ca04",
-                "reference": "1bec00a10039b823cc94eef4eddd47dcd3b2ca04",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/8790f594151ca6a2010c6218e09d96df67173ad3",
+                "reference": "8790f594151ca6a2010c6218e09d96df67173ad3",
                 "shasum": ""
             },
             "require": {
@@ -327,7 +327,7 @@
             },
             "require-dev": {
                 "dominicsayers/isemail": "dev-master",
-                "phpunit/phpunit": "^4.8.35",
+                "phpunit/phpunit": "^4.8.35||^5.7||^6.0",
                 "satooshi/php-coveralls": "^1.0.1"
             },
             "suggest": {
@@ -362,7 +362,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2017-11-15T23:40:40+00:00"
+            "time": "2018-04-10T10:11:19+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -2313,16 +2313,16 @@
         },
         {
             "name": "shirazsoft/gateway",
-            "version": "0.2.13",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ShirazSoft/Gateway.git",
-                "reference": "4714efc9232b83136849ad614c13db83da651d38"
+                "reference": "ad491b1e5c9ccb23a663b7cf5c53dfb000f8ee8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ShirazSoft/Gateway/zipball/4714efc9232b83136849ad614c13db83da651d38",
-                "reference": "4714efc9232b83136849ad614c13db83da651d38",
+                "url": "https://api.github.com/repos/ShirazSoft/Gateway/zipball/ad491b1e5c9ccb23a663b7cf5c53dfb000f8ee8d",
+                "reference": "ad491b1e5c9ccb23a663b7cf5c53dfb000f8ee8d",
                 "shasum": ""
             },
             "require": {
@@ -2388,7 +2388,7 @@
                 "shaparak",
                 "zarinpal"
             ],
-            "time": "2018-03-07T15:13:00+00:00"
+            "time": "2018-03-28T02:54:12+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

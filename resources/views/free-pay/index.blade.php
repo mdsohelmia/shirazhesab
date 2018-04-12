@@ -153,7 +153,7 @@
                                 <label for="gateway" class="col-md-4 col-form-label @lang('platform.input-pull')">درگاه انتخابی</label>
 
                                 <div class="col-md-7">
-                                    <select name="gateway" id="gateway" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}">
+                                    <select name="gateway" id="gateway" class="form-control{{ $errors->has('gateway') ? ' is-invalid' : '' }}">
                                         @foreach(config('gateway') as $key => $gateway)
                                             @if(isset($gateway['enable']))
                                                 @if($gateway['enable'] == 'yes')
