@@ -37,4 +37,9 @@ class Transaction extends Model
     {
         return $query->where('user_id', $user_id);
     }
+
+    public function scopeOfGateway($query, $gateway_id)
+    {
+        return $query->where('gateway_id', $gateway_id);
+    }
 }

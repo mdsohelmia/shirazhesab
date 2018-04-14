@@ -124,6 +124,11 @@ Route::get('/gateway/create', 'GatewayController@create')->name('gateway.create'
 Route::get('/card', 'CardController@index')->name('card')->middleware('auth');
 Route::get('/card/create', 'CardController@create')->name('card.create')->middleware('auth');
 
+
+Route::any('/payment', 'PaymentController@index')->name('payment');
+Route::any('/payment/callback', 'PaymentController@callback')->name('payment.callback');
+Route::get('/payment/status', 'PaymentController@status')->name('payment.status');
+
 Route::prefix(Config('platform.admin-route'))->name('admin.')->group(function () {
     Route::get('/dashboard', 'Admin\DashboardController@index')->name('dashboard');
     Route::get('/dashboard/tiles', 'Admin\DashboardController@tiles')->name('dashboard.tiles');

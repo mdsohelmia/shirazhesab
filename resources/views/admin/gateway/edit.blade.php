@@ -69,6 +69,26 @@
                                     </span>
                             @endif
                         </div>
+
+                        <div class="form-group">
+                            <label for="gateway">درکاه پرداخت</label>
+
+                            <select name="gateway" id="gateway" class="form-control">
+                                @foreach(config('gateway') as $key => $payment_gateway)
+                                    @if(isset($payment_gateway['enable']))
+                                        @if($payment_gateway['enable'] == 'yes')
+                                            <option value="{{$key}}"{{ old('gateway', $gateway->gateway) == $key  ? ' selected' : '' }}>{{$payment_gateway['title']}}</option>
+                                        @endif
+                                    @endif
+                                @endforeach
+                            </select>
+                            @if ($errors->has('gateway'))
+                                <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('gateway') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+
                         <div class="form-group">
                             <label for="enable">فعال</label>
 
