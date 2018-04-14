@@ -43,7 +43,7 @@ class CartController extends Controller
     public function addCart(Request $request)
     {
         $request->validate([
-            'qty' => 'required|numeric',
+            'qty' => 'required|numeric|min:1',
         ]);
         $item = Item::findOrFail($request->id);
         Cart::add($item->id, $item->title, $request->qty, $item->sale_price,['description' => $item->description]);
