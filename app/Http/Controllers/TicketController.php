@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\TicketReplied;
+use App\Notifications\TicketCreated;
 
 
 class TicketController extends Controller
@@ -47,8 +48,11 @@ class TicketController extends Controller
 
         $ticket->updated_at = date("Y-m-d H:i:s");
         if(Auth::user()->id == $ticket->user_id) {
-            //TODO: Staff Notification
             $ticket->status = 'user';
+            $user = User::findOrFail(config('platform.main-admin-user-id'));
+            try {
+                Notification::send($user, new TicketReplied($ticket, $user));
+            } catch (\Exception $e) {}
         } else {
             $ticket->status = 'staff';
             $user = User::findOrFail($ticket->user_id);
@@ -90,6 +94,12 @@ class TicketController extends Controller
         $ticket->title = $request->title;
         $ticket->password = uniqid();
         $ticket->save();
+
+        $user = User::findOrFail(config('platform.main-admin-user-id'));
+        try {
+            Notification::send($user, new TicketCreated($ticket, $user));
+        } catch (\Exception $e) {}
+
         flash('تیکت با موفقیت ثبت شد.')->success();
         return redirect()->route('ticket.view',['id' => $ticket->id]);
     }

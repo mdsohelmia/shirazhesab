@@ -18,6 +18,7 @@ class CreateCategoryStaffsTable extends Migration
             $table->integer('user_id');
             $table->integer('category_id');
             $table->longText('description');
+            $table->longText('options');
             $table->timestamps();
         });
     }

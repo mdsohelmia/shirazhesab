@@ -71,15 +71,11 @@ class InvoiceCreated extends Notification
     {
         $pay = route('invoice.pay-link-password', [$this->invoice->id,$this->invoice->password]);
         $view = route('invoice.view-password', [$this->invoice->id,$this->invoice->password]);
-        if($this->user->telegram_user_id) {
-            return TelegramMessage::create()
-                ->to($this->user->telegram_user_id)
-                ->content("صدور فاکتور جدید:" . $this->invoice->id ."\n" ."مبلغ فاکتور:" . number_format($this->invoice->total) ."\n") // Markdown supported.
-                ->button('نمایش فاکتور', $view)
-                ->button('پرداخت فاکتور', $pay);
-        } else {
-            return false;
-        }
+        return TelegramMessage::create()
+            ->to($this->user->telegram_user_id)
+            ->content("صدور فاکتور جدید:" . $this->invoice->id ."\n" ."مبلغ فاکتور:" . number_format($this->invoice->total) ."\n") // Markdown supported.
+            ->button('نمایش فاکتور', $view)
+            ->button('پرداخت فاکتور', $pay);
     }
 
 
