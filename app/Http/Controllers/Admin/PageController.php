@@ -23,7 +23,7 @@ class PageController extends Controller
 
     public function data()
     {
-        return DataTables::eloquent(Page::select(['id','title']))
+        return DataTables::eloquent(Page::select(['id','title'])->orderBy('created_at', 'desc'))
             ->addColumn('action', 'admin.page.action')
             ->make(true);
     }

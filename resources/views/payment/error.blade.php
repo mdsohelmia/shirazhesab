@@ -14,8 +14,6 @@
     messageField.setAttribute("name", "message");
     messageField.setAttribute("value", "{{$message}}");
 
-
-
     form.appendChild(codeField);
     form.appendChild(messageField);
 

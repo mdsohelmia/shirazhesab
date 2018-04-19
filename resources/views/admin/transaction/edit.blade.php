@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group">
                             <label for="transaction_at">تاریخ</label>
-                            <input id="transaction_at" placeholder="____/__/__" dir="ltr" type="text" class="form-control{{ $errors->has('transaction_at') ? ' is-invalid' : '' }}" name="transaction_at" value="{{ old('transaction_at', jDate::forge($transaction->transaction_at)->format('Y/m/d')) }}" required>
+                            <input id="transaction_at" autocomplete="off" value="{{ old('transaction_at', jDate::forge($transaction->transaction_at)->format('Y/m/d')) }}" data-date="{{ old('transaction_at', jDate::forge($transaction->transaction_at)->format('Y/m/d')) }}" placeholder="____/__/__" dir="ltr" type="text" class="form-control{{ $errors->has('transaction_at') ? ' is-invalid' : '' }}" name="transaction_at" required>
 
                             @if ($errors->has('transaction_at'))
                                 <span class="invalid-feedback">
@@ -117,10 +117,14 @@
 @endsection
 
 @section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://unpkg.com/persian-date@latest/dist/persian-date.min.js"></script>
+    <script src="https://unpkg.com/persian-datepicker@latest/dist/js/persian-datepicker.min.js"></script>
     <script>
         $(function() {
             $('#amount').mask('#,##0', {reverse: true});
             $('#transaction_at').mask('0000/00/00');
+            $("#transaction_at").persianDatepicker({format: 'YYYY/MM/DD',initialValue: false,autoClose: true,persianDigit:false});
         });
     </script>
 @endsection

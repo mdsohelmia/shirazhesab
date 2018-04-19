@@ -25,6 +25,7 @@
                         <tr>
                             <th scope="col" class="text-center">عنوان</th>
                             <th scope="col" class="text-center">حجم تراکنش</th>
+                            <th scope="col" class="text-center">API Key</th>
                             <th scope="col" class="text-center">اقدام ها</th>
                         </tr>
                         </thead>
@@ -37,7 +38,9 @@
                                 <td class="text-center">
                                     {{ $gateway->getInventory() }}
                                 </td>
-
+                                <td class="text-center">
+                                    {{ $gateway->api_key }}
+                                </td>
                                 <td>
                                     <a href="{{ route('admin.gateway.edit',[$gateway->id]) }}" class="btn btn-success btn-sm btn-mobile"><i class="fa fa-edit"></i> ویرایش</a>
                                     <form method="post" action="{{ route('admin.gateway.delete',['id' => $gateway->id]) }}" style="display:inline;">

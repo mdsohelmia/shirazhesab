@@ -36,6 +36,9 @@
                             <div class="card card-default ml-5 mb-2">
                                 <div class="card-header">
                                     {{ $post->user->name }}
+                                    @if($post->user->title)
+                                        ({{$post->user->title}})
+                                    @endif
                                     <span class="badge badge-dark pull-left">{{ jDate::forge($post->created_at)->ago() }}</span>
                                 </div>
                                 <div class="card-body">
@@ -46,6 +49,9 @@
                             <div class="card card-default mr-5 mb-2">
                                 <div class="card-header">
                                     {{ $post->user->name }}
+                                    @if($post->user->title)
+                                        ({{$post->user->title}})
+                                    @endif
                                     <span class="badge badge-dark pull-left">{{ jDate::forge($post->created_at)->ago() }}</span>
                                 </div>
                                 <div class="card-body">

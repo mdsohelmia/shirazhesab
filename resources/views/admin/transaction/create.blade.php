@@ -4,6 +4,10 @@
 @elseif(Request::segment(4) == 'expense')
     @section('title', 'ثبت هزینه - ')
 @endif
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/persian-datepicker@latest/dist/css/persian-datepicker.min.css"/>
+@endsection
 @section('content')
         <div class="row justify-content-center">
             <div class="col-md-3">
@@ -132,10 +136,14 @@
 @endsection
 
 @section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://unpkg.com/persian-date@latest/dist/persian-date.min.js"></script>
+    <script src="https://unpkg.com/persian-datepicker@latest/dist/js/persian-datepicker.min.js"></script>
     <script>
         $(function() {
             $('#amount').mask('#,##0', {reverse: true});
             $('#transaction_at').mask('0000/00/00');
+            $("#transaction_at").persianDatepicker({format: 'YYYY/MM/DD',initialValue: false,autoClose: true,persianDigit:false});
         });
     </script>
 @endsection

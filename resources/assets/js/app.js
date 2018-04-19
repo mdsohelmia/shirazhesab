@@ -34,5 +34,5 @@ $(document).ready(function() {
         dir: "rtl",
         language: "fa"
     });
-    $('.table').basictable();
+    $('table').basictable();
 });

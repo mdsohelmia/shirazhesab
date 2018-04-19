@@ -48,6 +48,7 @@ class GatewayController extends Controller
         $gateway->callback_password = $request->callback_password;
         $gateway->enable = $request->enable;
         $gateway->verity = $request->verity;
+        $gateway->api_key = uniqid();
         $gateway->gateway = $request->gateway;
         $gateway->website = $request->website;
         $gateway->callback_hook = $request->callback_hook;

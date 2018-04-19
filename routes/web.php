@@ -127,7 +127,7 @@ Route::get('/card/create', 'CardController@create')->name('card.create')->middle
 
 Route::any('/payment', 'PaymentController@index')->name('payment');
 Route::any('/payment/callback', 'PaymentController@callback')->name('payment.callback');
-Route::get('/payment/status', 'PaymentController@status')->name('payment.status');
+Route::get('/payment/check/{api_key}/{id}', 'PaymentController@check')->name('payment.check');
 
 Route::prefix(Config('platform.admin-route'))->name('admin.')->group(function () {
     Route::get('/dashboard', 'Admin\DashboardController@index')->name('dashboard');

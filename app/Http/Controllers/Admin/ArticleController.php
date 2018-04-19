@@ -25,7 +25,7 @@ class ArticleController extends Controller
 
     public function data()
     {
-        return DataTables::eloquent(Article::with('category')->select(['id','title','category_id']))
+        return DataTables::eloquent(Article::with('category')->orderBy('created_at', 'desc')->select(['id','title','category_id']))
             ->addColumn('action', 'admin.article.action')
             ->make(true);
     }

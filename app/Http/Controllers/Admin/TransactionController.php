@@ -91,7 +91,7 @@ class TransactionController extends Controller
         $transaction->user_id = $request->user_id;
         $transaction->transaction_at = jDateTime::createDatetimeFromFormat('Y/m/d', $request->transaction_at);
         $transaction->save();
-        flash('تراکنش با موفقیت اضافه شد.')->success();
+        flash('تراکنش با موفقیت ویرایش شد.')->success();
         return redirect()->route('admin.transaction');
     }
 
