@@ -30,6 +30,7 @@
             </div>
             <div class="row">
                 <div class="col-md-3">
+                    <img class="card-img-top mb-2" src="{{ Storage::url($file->source) }}" alt="image" style="width:100%">
                     @if($file->version_id)
                         @if($file->type == 'paid')
                             <a href="{{ route('file.add-cart',['id'=>$file->id]) }}" class="btn btn-mobile btn-warning btn-lg btn-block"><i class="fa fa-cart-plus"></i> خرید فایل</a>

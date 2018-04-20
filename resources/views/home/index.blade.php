@@ -39,7 +39,8 @@
                             <strong>رایگان</strong>
                         @endif
                         <br />
-                        {{$file->description}}</p>
+                            {{ $file->description }}
+                    </p>
                     <div class="row">
                         <div class="col"><a href="{{ route('file.view',['id'=>$file->id]) }}" class="btn btn-danger btn-block btn-sm"><i class="fa fa-eye"></i> مشاهده</a></div>
                         @if($file->version_id)

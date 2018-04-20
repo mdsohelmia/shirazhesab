@@ -235,5 +235,7 @@ Route::prefix(Config('platform.admin-route'))->name('admin.')->group(function ()
     Route::post('/gateway/insert', 'Admin\GatewayController@insert')->name('gateway.insert');
     Route::delete('/gateway/delete/{id}', 'Admin\GatewayController@delete')->name('gateway.delete');
 
+    Route::get('/gateway/inventory/{id}', 'Admin\GatewayController@inventory')->name('gateway.inventory');
+
     Route::get('/app', 'Admin\AppController@index')->name('app');
 });

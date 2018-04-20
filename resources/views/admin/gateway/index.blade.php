@@ -36,7 +36,7 @@
                                     {{ $gateway->title }}
                                 </td>
                                 <td class="text-center">
-                                    {{ $gateway->getInventory() }}
+                                    <span-component web-address="{{ route('admin.gateway.inventory', [$gateway->id]) }}"></span-component>
                                 </td>
                                 <td class="text-center">
                                     {{ $gateway->api_key }}

@@ -27,6 +27,12 @@ class GatewayController extends Controller
         return view('admin.gateway.create',['users' => $users]);
     }
 
+    public function inventory($id)
+    {
+        $gateway = Gateway::findOrFail($id);
+        return number_format($gateway->getInventory());
+    }
+
     public function insert(Request $request)
     {
         $request->validate([
