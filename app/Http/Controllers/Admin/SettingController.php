@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Setting;
 use Config;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 class SettingController extends Controller
 {
@@ -49,10 +50,18 @@ class SettingController extends Controller
                         File::delete(config($setting->key));
                     }
                     $file = $request->file($key)->store('/config');
-                    Config::write($setting->key, storage_path('app/'.$file));
+                    try {
+                        Config::write($setting->key, storage_path('app/'.$file));
+                    } catch (\Exception $e) {
+                        Log::error($e);
+                    }
                 }
             } else {
-                Config::write($setting->key, $request->{$key});
+                try {
+                    Config::write($setting->key, $request->{$key});
+                } catch (\Exception $e) {
+                    Log::error($e);
+                }
             }
         }
         flash('تغییرات با موفقیت ذخیره شد.')->success();
