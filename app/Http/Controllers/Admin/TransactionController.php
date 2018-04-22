@@ -89,7 +89,7 @@ class TransactionController extends Controller
         $transaction->category_id = $request->category_id;
         $transaction->account_id = $request->account_id;
         $transaction->user_id = $request->user_id;
-        $transaction->transaction_at = jDateTime::createDatetimeFromFormat('Y/m/d', $request->transaction_at);
+        $transaction->transaction_at = jDateTime::createDatetimeFromFormat('Y/m/d', en_numbers($request->transaction_at));
         $transaction->save();
         flash('تراکنش با موفقیت ویرایش شد.')->success();
         return redirect()->route('admin.transaction');
@@ -116,7 +116,7 @@ class TransactionController extends Controller
         $transaction->category_id = $request->category_id;
         $transaction->account_id = $request->account_id;
         $transaction->user_id = $request->user_id;
-        $transaction->transaction_at = jDateTime::createDatetimeFromFormat('Y/m/d', $request->transaction_at);
+        $transaction->transaction_at = jDateTime::createDatetimeFromFormat('Y/m/d', en_numbers($request->transaction_at));
         $transaction->save();
         flash('تراکنش با موفقیت اضافه شد.')->success();
         return redirect()->route('admin.transaction');

@@ -64,6 +64,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-sm-3 col-md-3 col-6">
                                 <div class="card text-white bg-success mb-2">
                                     <div class="card-body">
@@ -89,7 +90,7 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-6 mb-2">
                         <div class="card card-default">
-                            <div class="card-header">تفکیک هزینه های ماه جاری</div>
+                            <div class="card-header">تفکیک هزینه ها</div>
                             <div class="card-body">
                                 <canvas id="chart_expense"></canvas>
                             </div>
@@ -97,7 +98,7 @@
                     </div>
                     <div class="col-md-6 col-sm-6 mb-2">
                         <div class="card card-default">
-                            <div class="card-header">تفکیک درآمد های ماه جاری</div>
+                            <div class="card-header">تفکیک درآمد ها</div>
                             <div class="card-body">
                                 <canvas id="chart_income"></canvas>
                             </div>
