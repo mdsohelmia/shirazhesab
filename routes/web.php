@@ -80,9 +80,10 @@ Route::post('/file-version/insert/{id}', 'FileVersionController@insert')->name('
 
 
 Route::get('/article', 'ArticleController@index')->name('article');
-Route::get('/article/{id}', 'ArticleController@view')->name('article.view');
-Route::get('/article/{id}/{slug}', 'ArticleController@view')->name('article.slug');
-Route::get('/articles/json', 'ArticleController@json')->name('article.json.last');
+Route::get('/article/view/{id}', 'ArticleController@view')->name('article.view');
+Route::get('/article/view/{id}/{slug}', 'ArticleController@view')->name('article.slug');
+Route::get('/article/json', 'ArticleController@json')->name('article.json.last');
+Route::get('/article/category/{id}', 'ArticleController@category')->name('article.category');
 
 
 Route::get('/notification', 'NotificationController@index')->name('notification');
@@ -100,11 +101,12 @@ Route::get('/item', 'ItemController@index')->name('item');
 
 Route::get('/forum', 'DiscussionController@index')->name('forum');
 Route::get('/discussion', 'DiscussionController@index')->name('discussion');
+Route::get('/discussion/category/{id}', 'DiscussionController@category')->name('discussion.category');
 Route::get('/discussion/create', 'DiscussionController@create')->name('discussion.create')->middleware('auth');
 Route::post('/discussion/insert', 'DiscussionController@insert')->name('discussion.insert')->middleware('auth');
 Route::post('/discussion/post/{id}', 'DiscussionController@post')->name('discussion.post')->middleware('auth');
 Route::get('/discussion/view/{id}', 'DiscussionController@view')->name('discussion.view');
-Route::get('/discussion/category/{id}', 'DiscussionController@category')->name('discussion.category');
+
 
 Route::get('/cart', 'CartController@index')->name('cart');
 Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');

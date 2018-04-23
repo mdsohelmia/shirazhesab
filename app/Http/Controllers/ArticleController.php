@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Article;
+use App\Category;
 
 class ArticleController extends Controller
 {
@@ -32,5 +32,20 @@ class ArticleController extends Controller
             $i++;
         }
         return response()->json($articles_array);
+    }
+
+    public function index()
+    {
+        $articles = Article::with(['user','category'])->orderBy('created_at', 'desc')->paginate(config('platform.file-per-page'));
+        $categories = Category::findType('Article');
+        return view('article.index',['categories' => $categories, 'articles' => $articles]);
+    }
+
+    public function category($id)
+    {
+        $category = Category::findWithCache($id);
+        $articles = Article::with(['user','category'])->where('category_id', $id)->orderBy('created_at', 'desc')->paginate(config('platform.file-per-page'));
+        $categories = Category::findType('Article');
+        return view('article.category',['categories' => $categories, 'articles' => $articles, 'category' => $category]);
     }
 }

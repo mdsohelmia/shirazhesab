@@ -73,7 +73,7 @@ class DashboardController extends Controller
     }
     public function news()
     {
-        $url = "https://shirazsoft.com/articles/json";
+        $url = "https://shirazsoft.com/article/json";
         $json = file_get_contents($url);
         $json = json_decode($json);
         return response()->json($json);

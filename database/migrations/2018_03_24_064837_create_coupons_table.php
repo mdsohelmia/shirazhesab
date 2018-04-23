@@ -15,14 +15,14 @@ class CreateCouponsTable extends Migration
     {
         Schema::create('coupons', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('item_id');
+            $table->integer('item_id')->nullable();
             $table->string('title');
             $table->string('code');
             $table->decimal('price', 15, 0)->nullable();
             $table->double('percent')->nullable();
             $table->enum('type',['percent','price']);
             $table->double('limit_count')->nullable();
-            $table->double('use_count')->nullable();
+            $table->double('use_count')->default(0);
             $table->dateTime('expire_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
