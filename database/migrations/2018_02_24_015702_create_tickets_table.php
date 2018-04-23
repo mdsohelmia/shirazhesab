@@ -23,7 +23,7 @@ class CreateTicketsTable extends Migration
             $table->string('email')->nullable();
             $table->string('mobile')->nullable();
             $table->integer('category_id');
-            $table->enum('status',['close','open','staff','user','waiting','lock'])->default('open');
+            $table->enum('status',['close','open','staff','user','waiting','lock', 'done'])->default('open');
             $table->enum('priority',['normal','urgent','important'])->default('normal');
             $table->timestamps();
             $table->softDeletes();

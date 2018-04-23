@@ -31,6 +31,16 @@
                     @include('sidebar')
                 </div>
                 <div class="col-md-9">
+                    @if($ticket->status == 'lock')
+                    <div class="alert alert-warning">
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                        این تیکت با توجه به نظر مدیریت و کارشناسان قفل شده است و جهت پیگیری مجدد نیاز است تیکت جدیدی ایجاد نمایید.
+                    </div>
+                    @elseif($ticket->status == 'close')
+                        <div class="alert alert-info">
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            این تیکت به صورت سیستمی یا توسط خود شما بسته شده است، لذا در صورتی که می خواهید آن را مجدد پیگیری کنید برای آن پاسخ ثبت کنید.
+                        </div>
                         <div id="accordion">
                             <div class="card card-info mb-2">
                                 <div class="card-header" data-toggle="collapse" href="#collapseOne"><i class="fa fa-arrow-circle-left"></i> پاسخ به تیکت</div>
@@ -52,6 +62,40 @@
 
                             </div>
                         </div>
+                    @elseif($ticket->status == 'done')
+                        <div class="alert alert-success">
+                            <i class="fa fa-check-circle" aria-hidden="true"></i>
+                            تیکت شما در این تیکت بررسی شده است و شما آن را به عنوان انجام شده ثبت کرده اید، در صورت نیاز به پیگیری مجدد تیکت جدیدی ثبت نمایید.
+                        </div>
+                    @else
+                        @if($ticket->status == 'waiting')
+                            <div class="alert alert-info">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                تیکت شما توسط کارشناس مشاهده شده است و در دست پیگیری است، لذا صبور باشید.
+                            </div>
+                        @endif
+                        <div id="accordion">
+                            <div class="card card-info mb-2">
+                                <div class="card-header" data-toggle="collapse" href="#collapseOne"><i class="fa fa-arrow-circle-left"></i> پاسخ به تیکت</div>
+
+                                <div class="card-body collapse" id="collapseOne" data-parent="#accordion">
+                                    <form method="POST" action="{{ route('ticket.replay',['id'=> $ticket->id]) }}" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('post')
+                                        <div class="form-group">
+                                            <label for="text">متن</label>
+                                            <textarea name="text" id="text" class="form-control{{ $errors->has('text') ? ' is-invalid' : '' }}">{{old('text')}}</textarea>
+                                            @if ($errors->has('text'))
+                                                <span class="invalid-feedback"><strong>{{ $errors->first('text') }}</strong></span>
+                                            @endif
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-mobile btn-sm"><i class="fa fa-send"></i>ارسال پاسخ</button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    @endif
                         @foreach($replays as $replay)
                             @if($replay->user_id == $ticket->user_id)
                                 <div class="card card-default ml-5 mb-2">

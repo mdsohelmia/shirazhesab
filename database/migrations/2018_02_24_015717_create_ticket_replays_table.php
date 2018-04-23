@@ -18,6 +18,7 @@ class CreateTicketReplaysTable extends Migration
             $table->integer('user_id');
             $table->integer('ticket_id');
             $table->text('text');
+            $table->enum('type',['normal','system','forward'])->default('normal');
             $table->timestamps();
             $table->softDeletes();
         });

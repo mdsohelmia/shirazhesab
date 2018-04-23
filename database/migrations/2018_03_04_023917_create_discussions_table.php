@@ -21,7 +21,7 @@ class CreateDiscussionsTable extends Migration
             $table->longText('text');
             $table->string('slug')->nullable();
             $table->enum('important',['yes','no'])->default('no');
-            $table->enum('type',['normal','done','close', 'lock'])->default('normal');
+            $table->enum('type',['normal','done','close'])->default('normal');
             $table->string('color')->nullable();
             $table->integer('posts')->default(0);
             $table->softDeletes();
