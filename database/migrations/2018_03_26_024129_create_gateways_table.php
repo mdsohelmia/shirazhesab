@@ -28,7 +28,7 @@ class CreateGatewaysTable extends Migration
             $table->string('code')->unique()->nullable();
             $table->enum('type',['direct','indirect'])->default('direct');
             $table->enum('enable',['yes','no'])->default('yes');
-            $table->enum('verity',['yes','no'])->default('no');
+            $table->enum('verify',['yes','no'])->default('no');
             $table->enum('wage',['user','subscribe','settle'])->default('settle');
             $table->double('percent')->default(1);
             $table->longText('ips')->nullable();

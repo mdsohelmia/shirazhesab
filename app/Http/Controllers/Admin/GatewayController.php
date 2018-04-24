@@ -41,7 +41,7 @@ class GatewayController extends Controller
             'callback_password' => 'required|min:6',
             'code' => 'nullable|unique:gateways,code',
             'enable' => 'required',
-            'verity' => 'required',
+            'verify' => 'required',
             'gateway' => 'required',
             'website' => 'nullable|url',
             'callback_hook' => 'nullable|url',
@@ -53,7 +53,7 @@ class GatewayController extends Controller
         $gateway->payment_password = $request->payment_password;
         $gateway->callback_password = $request->callback_password;
         $gateway->enable = $request->enable;
-        $gateway->verity = $request->verity;
+        $gateway->verify = $request->verify;
         $gateway->api_key = uniqid();
         $gateway->gateway = $request->gateway;
         $gateway->website = $request->website;
@@ -80,7 +80,7 @@ class GatewayController extends Controller
             'callback_password' => 'required|min:6',
             'code' => 'nullable|unique:gateways,code,'. $gateway->id,
             'enable' => 'required',
-            'verity' => 'required',
+            'verify' => 'required',
             'gateway' => 'required',
             'website' => 'nullable|url',
             'callback_hook' => 'nullable|url',
@@ -91,7 +91,7 @@ class GatewayController extends Controller
         $gateway->payment_password = $request->payment_password;
         $gateway->callback_password = $request->callback_password;
         $gateway->enable = $request->enable;
-        $gateway->verity = $request->verity;
+        $gateway->verify = $request->verify;
         $gateway->gateway = $request->gateway;
         $gateway->website = $request->website;
         $gateway->callback_hook = $request->callback_hook;

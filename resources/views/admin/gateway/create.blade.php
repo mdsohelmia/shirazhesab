@@ -104,15 +104,15 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label for="verity">تایید</label>
+                            <label for="verify">تایید</label>
 
-                            <select name="verity" id="enable" class="form-control">
-                                <option value="yes"{{ old('verity') == 'yes'  ? ' selected' : '' }}>بله</option>
-                                <option value="no"{{ old('verity') == 'no' ? ' selected' : '' }}>خیر</option>
+                            <select name="verify" id="verify" class="form-control">
+                                <option value="yes"{{ old('verify') == 'yes'  ? ' selected' : '' }}>بله</option>
+                                <option value="no"{{ old('verify') == 'no' ? ' selected' : '' }}>خیر</option>
                             </select>
-                            @if ($errors->has('verity'))
+                            @if ($errors->has('verify'))
                                 <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('verity') }}</strong>
+                                        <strong>{{ $errors->first('verify') }}</strong>
                                     </span>
                             @endif
                         </div>

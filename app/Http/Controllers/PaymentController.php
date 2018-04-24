@@ -39,64 +39,73 @@ class PaymentController extends Controller
     {
         $gateway = \App\Gateway::find($request->gateway_id);
         if($gateway) {
-            $string = $gateway->id .",". $gateway->payment_password .",". $request->amount .",". $request->gateway_order_id ."," . $request->gateway_callback .",". $request->description;
-            if(password_verify($string, $request->hash)) {
-                $transaction = Transaction::ofGateway($gateway->id)->where('gateway_order_id', $request->gateway_order_id);
-                if($transaction->first()) {
-                    return view('payment.error',['code'=> '3', 'message' => 'تراکنش پیشتر پرداخت شده است.','gateway_callback' => $request->gateway_callback]);
-                } else {
-                    if($request->amount < config('platform.min-payment-price')) {
-                        return view('payment.error',['code'=> '4', 'message' => 'مبلغ تراکنش کمتر از حد مجاز است.','gateway_callback' => $request->gateway_callback]);
-                    } else {
-                        try {
+            if($gateway->enable == 'yes') {
+                if($gateway->verify == 'yes') {
+                    $string = $gateway->id .",". $gateway->payment_password .",". $request->amount .",". $request->gateway_order_id ."," . $request->gateway_callback .",". $request->description;
+                    if(password_verify($string, $request->hash)) {
+                        $transaction = Transaction::ofGateway($gateway->id)->where('gateway_order_id', $request->gateway_order_id);
+                        if($transaction->first()) {
+                            return view('payment.error',['code'=> '3', 'message' => 'تراکنش پیشتر پرداخت شده است.','gateway_callback' => $request->gateway_callback]);
+                        } else {
+                            if($request->amount < config('platform.min-payment-price')) {
+                                return view('payment.error',['code'=> '4', 'message' => 'مبلغ تراکنش کمتر از حد مجاز است.','gateway_callback' => $request->gateway_callback]);
+                            } else {
+                                try {
 
-                            $request_gateway = $gateway->gateway;
-                            $bank_gateway = Gateway::{$request_gateway}();
-                            $bank_gateway->setCallback(url('payment/callback'));
-                            $bank_gateway->price($request->amount * 10)->ready();
-                            $refId =  $bank_gateway->refId();
-                            $transID = $bank_gateway->transactionId();
+                                    $request_gateway = $gateway->gateway;
+                                    $bank_gateway = Gateway::{$request_gateway}();
+                                    $bank_gateway->setCallback(url('payment/callback'));
+                                    $bank_gateway->price($request->amount * 10)->ready();
+                                    $refId =  $bank_gateway->refId();
+                                    $transID = $bank_gateway->transactionId();
 
-                            session(['description' => $request->description]);
-                            session(['gateway' => $request_gateway]);
-                            session(['gateway_id' => $gateway->id]);
-                            session(['amount' => $request->amount]);
-                            session(['gateway_order_id' => $request->gateway_order_id]);
-                            session(['gateway_callback' => $request->gateway_callback]);
+                                    session(['description' => $request->description]);
+                                    session(['gateway' => $request_gateway]);
+                                    session(['gateway_id' => $gateway->id]);
+                                    session(['amount' => $request->amount]);
+                                    session(['gateway_order_id' => $request->gateway_order_id]);
+                                    session(['gateway_callback' => $request->gateway_callback]);
 
-                            return $bank_gateway->redirect();
-                        } catch (Exception $e) {
-                            $bank_error = $e->getMessage();
-                        }catch (IrankishException $e) {
-                            $bank_error = $e->getMessage();
-                        } catch (SaderatException $e) {
-                            $bank_error = $e->getMessage();
-                        } catch (PayirSendException $e) {
-                            $bank_error = $e->getMessage();
-                        } catch (SadadException $e) {
-                            $bank_error = $e->getMessage();
-                        } catch (MellatException $e) {
-                            $bank_error = $e->getMessage();
-                        } catch (SamanException $e) {
-                            $bank_error = $e->getMessage();
-                        } catch (ZarinpalException $e) {
-                            $bank_error = $e->getMessage();
-                        } catch (PasargadErrorException $e) {
-                            $bank_error = $e->getMessage();
-                        } catch (ParsianErrorException $e) {
-                            $bank_error = $e->getMessage();
-                        } catch (PaypalException $e) {
-                            $bank_error = $e->getMessage();
-                        } catch (JahanPayException $e) {
-                            $bank_error = $e->getMessage();
+                                    return $bank_gateway->redirect();
+                                } catch (Exception $e) {
+                                    $bank_error = $e->getMessage();
+                                }catch (IrankishException $e) {
+                                    $bank_error = $e->getMessage();
+                                } catch (SaderatException $e) {
+                                    $bank_error = $e->getMessage();
+                                } catch (PayirSendException $e) {
+                                    $bank_error = $e->getMessage();
+                                } catch (SadadException $e) {
+                                    $bank_error = $e->getMessage();
+                                } catch (MellatException $e) {
+                                    $bank_error = $e->getMessage();
+                                } catch (SamanException $e) {
+                                    $bank_error = $e->getMessage();
+                                } catch (ZarinpalException $e) {
+                                    $bank_error = $e->getMessage();
+                                } catch (PasargadErrorException $e) {
+                                    $bank_error = $e->getMessage();
+                                } catch (ParsianErrorException $e) {
+                                    $bank_error = $e->getMessage();
+                                } catch (PaypalException $e) {
+                                    $bank_error = $e->getMessage();
+                                } catch (JahanPayException $e) {
+                                    $bank_error = $e->getMessage();
+                                }
+                                return view('payment.error',['code'=> '5', 'message' => $bank_error,'gateway_callback' => $request->gateway_callback]);
+                            }
                         }
-                        return view('payment.error',['code'=> '5', 'message' => $bank_error,'gateway_callback' => $request->gateway_callback]);
-                    }
-                }
 
+                    } else {
+                        return view('payment.error',['code'=> '2', 'message' => 'رمز وارد شده اشتباه است.','gateway_callback' => $request->gateway_callback]);
+                    }
+                } else {
+                    return view('payment.error',['code'=> '6', 'message' => 'درگاه تایید نشده است.','gateway_callback' => $request->gateway_callback]);
+                }
             } else {
-                return view('payment.error',['code'=> '2', 'message' => 'رمز وارد شده اشتباه است.','gateway_callback' => $request->gateway_callback]);
+                return view('payment.error',['code'=> '7', 'message' => 'درگاه غیر فعال است.','gateway_callback' => $request->gateway_callback]);
             }
+
         } else {
             return view('payment.error',['code'=> '1', 'message' => 'چنین درگاهی وجود ندارد.','gateway_callback' => $request->gateway_callback]);
         }
