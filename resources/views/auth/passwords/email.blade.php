@@ -22,7 +22,7 @@
                             <label for="email" class="col-md-4 col-form-label @lang('platform.input-pull')">آدرس ایمیل</label>
 
                             <div class="col-md-7">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                <input id="email" dir="ltr" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
