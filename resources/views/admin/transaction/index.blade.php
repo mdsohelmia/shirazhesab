@@ -22,7 +22,6 @@
                     </div>
 
                     <div class="card-body">
-
                         <table class="table table-striped table-bordered table-hover">
                             <thead class="thead-dark">
                             <tr>

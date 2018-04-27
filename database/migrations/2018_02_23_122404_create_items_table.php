@@ -19,11 +19,12 @@ class CreateItemsTable extends Migration
             $table->text('description')->nullable();
             $table->decimal('sale_price', 15, 0);
             $table->decimal('purchase_price', 15, 0)->nullable();
+            $table->decimal('revival_price', 15, 0)->nullable();
             $table->integer('category_id');
             $table->enum('enable',['yes','no'])->default('yes');
             $table->enum('asset',['yes','no'])->default('no');
             $table->enum('cart',['yes','no'])->default('no');
-            $table->integer('period')->nullable();
+            $table->string('period')->nullable();
             $table->string('factory')->nullable();
             $table->integer('factory_id')->nullable();
             $table->double('inventory')->nullable();

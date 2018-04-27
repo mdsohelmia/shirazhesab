@@ -67,9 +67,8 @@
                                 @endguest
                             @endif
                         @endforeach
-                            <li><a class="nav-link{{ Request::segment(1) == 'file' ? ' active' : '' }}" href="{{ route('file') }}"><i class="fa fa-files-o"></i> محصولات</a></li>
-
-                            <li><a class="nav-link{{ Request::segment(1) == 'free-pay' ? ' active' : '' }}" href="{{ route('free-pay') }}"><i class="fa fa-money"></i> پرداخت آزاد</a></li>
+                            <li><a class="nav-link{{ Request::segment(1) == 'file' ? ' active' : '' }}" href="{{ route('file') }}"><i class="fa fa-files-o"></i> کالای دیجیتال</a></li>
+                            <li><a class="nav-link{{ Request::segment(1) == 'product' ? ' active' : '' }}" href="{{ route('product') }}"><i class="fa fa-cubes"></i>فروشگاه</a></li>
                     </ul>
 
                     <!-- Left Side Of Navbar -->

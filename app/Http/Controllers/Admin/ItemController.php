@@ -58,6 +58,7 @@ class ItemController extends Controller
         $item->description = $request->description;
         $item->purchase_price = $request->purchase_price;
         $item->sale_price = $request->sale_price;
+        $item->revival_price = $request->revival_price;
         $item->enable = $request->enable;
         $item->asset = $request->asset;
         $item->cart = $request->cart;
@@ -78,6 +79,7 @@ class ItemController extends Controller
         $item->description = $request->description;
         $item->purchase_price = $request->purchase_price;
         $item->sale_price = $request->sale_price;
+        $item->revival_price = $request->revival_price;
         $item->enable = $request->enable;
         $item->asset = $request->asset;
         $item->cart = $request->cart;

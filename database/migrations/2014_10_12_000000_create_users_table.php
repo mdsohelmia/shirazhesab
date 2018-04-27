@@ -38,6 +38,11 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('zip_code')->nullable();
             $table->text('address')->nullable();
+            $table->text('location')->nullable();
+
+            $table->string('province')->nullable();
+            $table->string('city')->nullable();
+
 
             $table->string('id_card_file')->nullable();
             $table->string('national_card_file')->nullable();

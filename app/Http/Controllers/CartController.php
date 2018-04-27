@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
 use App\Invoice;
 use App\Item;
+use App\User;
 use App\Notifications\InvoiceCreated;
 use App\Record;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
+use Validator;
 
 class CartController extends Controller
 {
@@ -36,6 +39,7 @@ class CartController extends Controller
         }
         return view('cart.category', ['id' => $id, 'items' => $items, 'categories' => $categories]);
     }
+
     public function index()
     {
         return view('cart.index');
@@ -57,6 +61,36 @@ class CartController extends Controller
         flash("آیتم با موفقیت از سبد حذف شد.")->success();
         return redirect()->back();
     }
+
+    public function information()
+    {
+        if(Auth::guest()) {
+            flash("برای تکمیل سفارش نیاز است شما در سایت ثبت نام کنید لذا ابتدا فرم زیر را تکمیل کنید، در صورتی که پیش تر در سایت ثبت نام کردید از گزینه ورود استفاده نمایید.")->warning();
+            return redirect()->route('register');
+        } else {
+            $addresses = Address::where('user_id', Auth::user()->id);
+            return view('cart.information',['addresses' => $addresses]);
+        }
+    }
+
+    public function storeInformation(Request $request)
+    {
+        Validator::make($request->all(), [
+            'national_code' => 'required||numeric|unique:users,national_code,' . Auth::user()->id,
+            'phone' => 'required|numeric',
+            'zip_code' => 'required|numeric',
+            'address' => 'required|string',
+        ])->validate();
+        $user = User::findOrFail(Auth::user()->id);
+        session(['name' => $request->name]);
+        $user->gender = $request->gender;
+        $user->phone = $request->phone;
+        $user->zip_code = $request->zip_code;
+        $user->address = $request->address;
+        $user->save();
+        return redirect()->route('cart.checkout');
+    }
+
     public function checkout()
     {
         if(Auth::guest()) {
@@ -75,6 +109,13 @@ class CartController extends Controller
             $invoice->type = 'sale';
             $invoice->password = uniqid();
             $invoice->invoice_at = date("Y-m-d H:i:s");
+            if(session('name') == Auth::user()->name) {
+                $invoice->name = session('name');
+            }
+            $invoice->zip_code = Auth::user()->zip_code;
+            $invoice->phone = Auth::user()->phone;
+            $invoice->address = Auth::user()->address;
+
             $invoice->save();
 
             foreach (Cart::content() as $item) {

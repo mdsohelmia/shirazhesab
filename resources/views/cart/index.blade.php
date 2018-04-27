@@ -23,7 +23,7 @@
                                 <a href="{{ route('cart.order')  }}" class="btn btn-success pull-right"><i class="fa fa-shopping-bag"></i>خرید فروشگاهی</a>
                         @endif
                         @if(Cart::total() != 0)
-                        <a href="{{ route('cart.checkout')  }}" class="btn btn-warning pull-left"><i class="fa fa-check-circle-o"></i> تکمیل خرید</a>
+                        <a href="{{ route('cart.information')  }}" class="btn btn-warning pull-left"><i class="fa fa-user-circle-o"></i>تکمیل اطلاعات</a>
                         @endif
                     </div>
                 </div>

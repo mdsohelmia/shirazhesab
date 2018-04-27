@@ -74,7 +74,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="invoice_at">تاریخ</label>
-                                    <input id="invoice_at" autocomplete="off" placeholder="____/__/__" type="text" class="invoice_at date form-control{{ $errors->has('invoice_at') ? ' is-invalid' : '' }}" name="invoice_at" value="{{ old('invoice_at') }}" required>
+                                    <input id="invoice_at" dir="ltr" autocomplete="off" placeholder="____/__/__" type="text" class="invoice_at date form-control{{ $errors->has('invoice_at') ? ' is-invalid' : '' }}" name="invoice_at" value="{{ old('invoice_at') }}" required>
 
                                     @if ($errors->has('invoice_at'))
                                         <span class="invalid-feedback">
@@ -100,7 +100,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="due_at">تاریخ سرسید</label>
-                                    <input id="due_at" autocomplete="off" placeholder="____/__/__" type="text" class="due_at date form-control{{ $errors->has('due_at') ? ' is-invalid' : '' }}" name="due_at" value="{{ old('due_at') }}">
+                                    <input id="due_at" dir="ltr" autocomplete="off" placeholder="____/__/__" type="text" class="due_at date form-control{{ $errors->has('due_at') ? ' is-invalid' : '' }}" name="due_at" value="{{ old('due_at') }}">
 
                                     @if ($errors->has('due_at'))
                                         <span class="invalid-feedback">

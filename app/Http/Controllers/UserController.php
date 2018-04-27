@@ -94,7 +94,7 @@ class UserController extends Controller
         } else {
             Validator::make($request->all(), [
                 'national_code' => 'required||numeric|unique:users,national_code,' . Auth::user()->id,
-                'birth_certificate_code' => 'required|numeric|unique:users,birth_certificate_code,' . Auth::user()->id,
+                'birth_certificate_code' => 'required|numeric',
                 'phone' => 'required|numeric',
                 'zip_code' => 'required|numeric',
                 'address' => 'required|string',
@@ -106,7 +106,6 @@ class UserController extends Controller
             $user->zip_code = $request->zip_code;
             $user->gender = $request->gender;
             $user->phone = $request->phone;
-            $user->zip_code = $request->zip_code;
             $user->address = $request->address;
             $user->save();
             flash('اطلاعات تکمیلی با موفقیت بروز شد.')->success();

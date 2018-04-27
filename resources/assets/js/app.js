@@ -24,6 +24,7 @@ window.Vue = require('vue');
 Vue.component('item-list-component', require('./components/ItemListComponent.vue'));
 Vue.component('notification-navbar-component', require('./components/NotificationNavbarComponent.vue'));
 Vue.component('span-component', require('./components/SpanComponent.vue'));
+Vue.component('table-component', require('./components/TableComponent'));
 
 const app = new Vue({
     el: '#app'

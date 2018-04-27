@@ -79,6 +79,12 @@ Route::get('/file-version/create/{id}', 'FileVersionController@create')->name('f
 Route::post('/file-version/insert/{id}', 'FileVersionController@insert')->name('file-version.insert')->middleware('auth');
 
 
+Route::get('/product', 'ProductController@index')->name('product');
+Route::get('/product/category/{id}', 'ProductController@category')->name('product.category');
+Route::get('/product/view/{id}', 'ProductController@view')->name('file.view');
+
+
+
 Route::get('/article', 'ArticleController@index')->name('article');
 Route::get('/article/view/{id}', 'ArticleController@view')->name('article.view');
 Route::get('/article/view/{id}/{slug}', 'ArticleController@view')->name('article.slug');
@@ -110,6 +116,8 @@ Route::get('/discussion/view/{id}', 'DiscussionController@view')->name('discussi
 
 Route::get('/cart', 'CartController@index')->name('cart');
 Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
+Route::get('/cart/information', 'CartController@information')->name('cart.information');
+Route::post('/cart/store/information', 'CartController@storeInformation')->name('cart.store-information');
 Route::get('/cart/order', 'CartController@order')->name('cart.order');
 Route::get('/cart/category/{id}', 'CartController@category')->name('cart.category');
 

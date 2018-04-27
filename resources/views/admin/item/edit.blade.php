@@ -72,6 +72,20 @@
                             @endif
                         </div>
                         <div class="form-group">
+                            <label for="revival_price">قیمت تمدید</label>
+                            <div class="input-group mb-2 ml-sm-2">
+                                <input id="revival_price" type="text" dir="ltr" class="price form-control{{ $errors->has('revival_price') ? ' is-invalid' : '' }}" name="revival_price" value="{{ old('revival_price', $item->revival_price) }}">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">تومان</div>
+                                </div>
+                            </div>
+                            @if ($errors->has('revival_price'))
+                                <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('revival_price') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                        <div class="form-group">
                             <label for="category_id">دسته</label>
 
                             <select name="category_id" id="category_id" class="form-control">
