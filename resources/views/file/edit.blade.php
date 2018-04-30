@@ -8,7 +8,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('index') }}">{{ config('platform.name') }}</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('file') }}">محصولات</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('file') }}">نرم افزار</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('file.edit',['id' => $file->id]) }}">ویرایش فایل {{ $file->title }}</a></li>
                 </ol>
             </nav>

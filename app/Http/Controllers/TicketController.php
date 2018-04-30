@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Ticket;
 use App\TicketReplay;
 use Illuminate\Http\Request;
-use App\Category;
+use App\CategoryOption;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;

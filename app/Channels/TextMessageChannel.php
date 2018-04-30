@@ -8,8 +8,6 @@
 
 namespace App\Channels;
 use App\Channels\ShortMessage;
-use App\Channels\TextMessage;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Notifications\Notification;
 use GuzzleHttp\Client;
 class TextMessageChannel
@@ -17,7 +15,6 @@ class TextMessageChannel
     public function send($notifiable, Notification $notification)
     {
         $message = $notification->toTextMessage($notifiable);
-        //dd($message);
         $client = new Client();
         $response = $client->request('POST', 'https://api.sabanovin.com/v1/'.config('textmessage.api-key').'/sms/send.json', [
             'form_params' => [

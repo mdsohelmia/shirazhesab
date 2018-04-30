@@ -29,6 +29,7 @@ Route::get('/password', 'UserController@password')->name('password');
 Route::post('/password', 'UserController@updatePassword')->name('password');
 Route::post('/profile', 'UserController@updateProfile')->name('profile');
 Route::post('/information', 'UserController@updateInformation')->name('information');
+Route::post('/profile/cities', 'UserController@cities')->name('profile.cities');
 
 Route::post('/verify/id_card', 'UserController@verifyIdCard')->name('verify.id_card');
 Route::post('/verify/national_card', 'UserController@verifyNationalCard')->name('verify.national_card');
@@ -81,9 +82,15 @@ Route::post('/file-version/insert/{id}', 'FileVersionController@insert')->name('
 
 Route::get('/product', 'ProductController@index')->name('product');
 Route::get('/product/category/{id}', 'ProductController@category')->name('product.category');
-Route::get('/product/view/{id}', 'ProductController@view')->name('file.view');
+Route::get('/product/view/{id}', 'ProductController@view')->name('product.view');
+Route::get('/product/create', 'ProductController@create')->name('product.create')->middleware('auth');
+Route::post('/product/insert', 'ProductController@insert')->name('product.insert')->middleware('auth');
+Route::get('/product/edit/{id}', 'ProductController@edit')->name('product.edit')->middleware('auth');
+Route::post('/product/update/{id}', 'ProductController@update')->name('product.update')->middleware('auth');
+Route::delete('/product/update/{id}', 'ProductController@delete')->name('product.delete')->middleware('auth');
 
-
+Route::get('/product-image/create', 'ProductImageController@create')->name('product-image.create')->middleware('auth');
+Route::post('/product-image/insert', 'ProductImageController@insert')->name('product-image.insert')->middleware('auth');
 
 Route::get('/article', 'ArticleController@index')->name('article');
 Route::get('/article/view/{id}', 'ArticleController@view')->name('article.view');
@@ -123,6 +130,7 @@ Route::get('/cart/category/{id}', 'CartController@category')->name('cart.categor
 
 Route::post('/cart/add-cart', 'CartController@addCart')->name('cart.add-cart');
 Route::get('/cart/remove-cart/{id}', 'CartController@removeCart')->name('cart.remove-cart');
+Route::get('/cart/add-one-cart/{id}', 'CartController@addOneCart')->name('cart.add-one-cart');
 
 Route::post('/image-upload', 'ImageController@upload')->name('image-upload');
 Route::get('/image/{folder}/{img}', 'ImageController@view')->name('image-view');

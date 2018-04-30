@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
+use App\Province;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+
 
 class UserController extends Controller
 {
@@ -31,8 +34,13 @@ class UserController extends Controller
 
     public function profile()
     {
-
-        return view('user.profile');
+        $provinces = Province::all();
+        if(Auth::user()->province_id) {
+            $cities = City::where('province_id', Auth::user()->province_id)->get();
+        } else {
+            $cities = City::where('province_id', $provinces->first()->id)->get();
+        }
+        return view('user.profile', ['provinces' => $provinces, 'cities' => $cities]);
     }
 
     public function verify()
@@ -111,5 +119,11 @@ class UserController extends Controller
             flash('اطلاعات تکمیلی با موفقیت بروز شد.')->success();
             return redirect()->route('profile');
         }
+    }
+
+    public function cities(Request $request)
+    {
+        $cities = City::where('province_id', $request->province_id)->get();
+        return response()->json($cities);
     }
 }

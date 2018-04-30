@@ -114,7 +114,11 @@ class CreateCategoriesTable extends Migration
             'title' => 'عمومی',
             'type' => 'File',
         ]);
-
+        DB::table('categories')->insert([
+            'id' => 18,
+            'title' => 'کالا',
+            'type' => 'Item',
+        ]);
 
     }
 

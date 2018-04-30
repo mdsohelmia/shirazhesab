@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', "محصولات - ")
+@section('title', "نرم افزار - ")
 
 @section('css')
 
@@ -12,10 +12,10 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('index') }}">{{ config('platform.name') }}</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('file') }}">محصولات</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('file') }}">نرم افزار</a></li>
                     </ol>
                 </nav>
-                <h1>محصولات
+                <h1>نرم افزار
                     @if(Auth::check())
                         @if(Auth::user()->level == 'admin')
                             <a href="{{ route('file.create')  }}" class="btn btn-primary pull-left btn-sm"><i class="fa fa-plus"></i>افزودن فایل</a>
@@ -47,9 +47,9 @@
                                             <div class="col"><a href="{{ route('file.view',['id'=>$file->id]) }}" class="btn btn-danger btn-block btn-sm"><i class="fa fa-eye"></i> مشاهده</a></div>
                                             @if($file->version_id)
                                                 @if($file->type == 'paid')
-                                                    <div class="col"><a href="{{ route('file.add-cart',['id'=>$file->id]) }}" class="btn btn-warning btn-block btn-sm"><i class="fa fa-cart-plus"></i> خرید فایل</a></div>
+                                                    <div class="col"><a href="{{ route('cart.add-one-cart',['id' => $file->item_id]) }}" class="btn btn-warning btn-block btn-sm"><i class="fa fa-cart-plus"></i> خرید فایل</a></div>
                                                 @else
-                                                    <div class="col"><a href="{{ route('file.download',['id'=>$file->id]) }}" class="btn btn-success btn-block btn-sm"><i class="fa fa-download"></i> دریافت فایل</a></div>
+                                                    <div class="col"><a href="{{ route('file.download',['id' => $file->id]) }}" class="btn btn-success btn-block btn-sm"><i class="fa fa-download"></i> دریافت فایل</a></div>
                                                 @endif
                                             @endif
                                         </div>

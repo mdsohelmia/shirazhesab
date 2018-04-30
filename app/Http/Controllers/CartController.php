@@ -51,7 +51,15 @@ class CartController extends Controller
         ]);
         $item = Item::findOrFail($request->id);
         Cart::add($item->id, $item->title, $request->qty, $item->sale_price,['description' => $item->description]);
-        flash($item->title . "سفارش شما ثبت شد.")->success();
+        flash($item->title . " به سبد خرید اضافه شد.")->success();
+        return redirect()->route('cart');
+    }
+
+    public function addOneCart($id)
+    {
+        $item = Item::findOrFail($id);
+        Cart::add($item->id, $item->title, 1, $item->sale_price,['description' => $item->description]);
+        flash($item->title . " به سبد خرید اضافه شد.")->success();
         return redirect()->route('cart');
     }
 

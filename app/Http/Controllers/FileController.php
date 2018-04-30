@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Item;
 use Telegram\Bot\Api;
+
 use Telegram\Bot\Keyboard\Keyboard;
 
 class FileController extends Controller
@@ -114,7 +115,7 @@ class FileController extends Controller
             $item = new Item();
             $item->title = $file->title;
             $item->factory = '\App\Factory\FileFactory';
-            $item->category_id  = 10;
+            $item->category_id  = config('platform.file-category-id');
             $item->factory_id = $file->id;
             $item->sale_price = $file->price;
             $item->save();
@@ -175,7 +176,7 @@ class FileController extends Controller
                 $item = new Item();
                 $item->title = $file->title;
                 $item->factory = '\App\Factory\FileFactory';
-                $item->category_id  = 10;
+                $item->category_id  = config('platform.file-category-id');
                 $item->factory_id = $file->id;
                 $item->sale_price = $file->price;
                 $item->save();
@@ -187,30 +188,6 @@ class FileController extends Controller
         return redirect()->route('file.view',['id'=>$file->id]);
     }
 
-    public function addCart($id)
-    {
-        $file = File::with('version')->findOrFail($id);
-        if(Auth::check()) {
-            $purchases = FilePurchase::ofFile($id)->where('user_id',Auth::user()->id)->count();
-            if($purchases > 0) {
-                FileDownload::create(['user_id'=>Auth::user()->id,'file_id'=>$file->id]);
-                return Storage::download($file->version->source, $file->version->name);
-            }
-        }
-        $select = 0;
-        foreach(Cart::content() as $item){
-            if($item->id == $file->item_id) {
-                $select = 1;
-            }
-        }
-        if ($select == 0) {
-            Cart::add($file->item_id, $file->title, 1, $file->price,['description' => $file->description, 'file_id'=>$file->id, 'factory'=> 'File']);
-            flash("فایل " . $file->title . " به سبد خرید اضافه شد.")->success();
-        } else {
-            flash("فایل مورد نظر در سبد خرید شما موجود است.")->warning();
-        }
-        return redirect()->route('cart');
-    }
     public function removeCart($id)
     {
         Cart::remove($id);

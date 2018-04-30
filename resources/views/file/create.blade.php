@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', "محصولات - ")
+@section('title', "افزودن فایل - ")
 
 @section('content')
         <div class="row justify-content-center">
@@ -8,7 +8,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('index') }}">{{ config('platform.name') }}</a></li>
-                        <li class="breadcrumb-item active"><a href="{{ route('file') }}">محصولات</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ route('file') }}">نرم افزار</a></li>
                         <li class="breadcrumb-item" aria-current="page"><a href="{{ route('file.create') }}">افزودن فایل</a></li>
                     </ol>
                 </nav>

@@ -35,7 +35,7 @@ class InvoiceCreated extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database', TelegramChannel::class, TextMessageChannel::class];
+        return ['mail', 'database', TextMessageChannel::class, TelegramChannel::class];
     }
 
     /**
@@ -82,9 +82,10 @@ class InvoiceCreated extends Notification
     public function toTextMessage($notifiable)
     {
         $url = route('invoice.view-password', [$this->invoice->id,$this->invoice->password]);
+
         return TextMessage::create()
             ->to($this->user->mobile)
-            ->content('صدور فاکتور شماره:' . $this->transaction->id . ' مشاهده:'.$url);
+            ->content('صدور فاکتور شماره:' . $this->invoice->id . ' مشاهده:'.$url);
     }
 
 

@@ -32,7 +32,7 @@
                     <div class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">{{$item->name}}</h5>
-                            <small><a href="{{ route('file.remove-cart',['id'=>$item->rowId]) }}" class="btn btn-danger btn-sm"><i class="fa fa-close"></i> حذف</a></small>
+                            <small><a href="{{ route('cart.remove-cart',['id'=>$item->rowId]) }}" class="btn btn-danger btn-sm"><i class="fa fa-close"></i> حذف</a></small>
                         </div>
                         <p class="mb-1">قیمت واحد:{{number_format($item->price)}}تومان
                             <br />

@@ -149,7 +149,7 @@
                 }
             });
         }).catch(function (error) {
-            alert(error);
+            console.log(error);
         });
         axios.get('{{ route('admin.dashboard.expenses') }}').then(function (response) {
             var ctx = document.getElementById("chart_expense").getContext('2d');
@@ -182,7 +182,7 @@
                 }
             });
         }).catch(function (error) {
-            alert(error);
+            console.log(error);
         });
         axios.get('{{ route('admin.dashboard.tiles') }}').then(function (response) {
             $('#total_of_accounts').html(response.data.total_of_accounts);
@@ -190,7 +190,7 @@
             $('#month_income').html(response.data.month_income);
             $('#month_expense').html(response.data.month_expense);
         }).catch(function (error) {
-            alert(error);
+            console.log(error);
         });
     });
 </script>

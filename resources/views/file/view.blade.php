@@ -8,7 +8,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('index') }}">{{ config('platform.name') }}</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('file') }}">محصولات</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('file') }}">نرم افزار</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('file.view',['id' => $file->id]) }}">{{ $file->title }}</a></li>
                 </ol>
             </nav>
@@ -35,7 +35,7 @@
                     @endif
                     @if($file->version_id)
                         @if($file->type == 'paid')
-                            <a href="{{ route('file.add-cart',['id'=>$file->id]) }}" class="btn btn-mobile btn-warning btn-lg btn-block"><i class="fa fa-cart-plus"></i> خرید فایل</a>
+                            <a href="{{ route('cart.add-one-cart',['id'=>$file->item_id]) }}" class="btn btn-mobile btn-warning btn-lg btn-block"><i class="fa fa-cart-plus"></i> خرید فایل</a>
                         @else
                             <a href="{{ route('file.download',['id'=>$file->id]) }}" class="btn btn-mobile btn-success btn-lg btn-block"><i class="fa fa-download"></i> دریافت فایل</a>
                         @endif

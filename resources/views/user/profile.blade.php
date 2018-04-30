@@ -159,6 +159,38 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="province_id" class="col-md-4 col-form-label @lang('platform.input-pull')">استان</label>
+
+                            <div class="col-md-7">
+                                <select onchange="selectProvince(this.value);" class="form-control{{ $errors->has('province_id') ? ' is-invalid' : '' }}" name="province_id" required>
+                                @foreach($provinces as $province)
+                                        <option value="{{ $province->id }}"{{ old('province_id', Auth::user()->province_id) == $province->id ? ' selected' :'' }}>{{ $province->name }}</option>
+                                @endforeach
+                                </select>
+                                @if ($errors->has('province_id'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('province_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="city_id" class="col-md-4 col-form-label @lang('platform.input-pull')">شهر</label>
+
+                            <div class="col-md-7">
+                                <select class="form-control{{ $errors->has('city_id') ? ' is-invalid' : '' }}" name="city_id" required>
+                                    @foreach($cities as $city)
+                                        <option value="{{ $city->id }}"{{ old('city_id', Auth::user()->city_id) == $city->id ? ' selected' :'' }}>{{ $city->name }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('city_id'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('city_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label @lang('platform.input-pull')">آدرس</label>
 
                             <div class="col-md-7">
@@ -327,4 +359,21 @@
             </div>
         </div>
     @endif
+@endsection
+
+@section('js')
+    <script>
+        function selectProvince(province_id) {
+            alert(province_id);
+            axios.post('{{ route('profile.cities') }}',{'province_id':province_id}).then(function (response) {
+                var city = $('#city_id');
+                response.each(function(){
+                    alert(this);
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+
+    </script>
 @endsection

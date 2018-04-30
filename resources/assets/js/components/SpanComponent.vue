@@ -16,7 +16,7 @@
             axios.get(v.webAddress).then(function (response) {
                 v.data_output = response.data;
             }).catch(function (error) {
-                alert(error);
+                console.log(error);
             });
         }
     }

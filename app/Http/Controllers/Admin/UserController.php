@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\UserWelcome;
 
 class UserController extends Controller
 {
@@ -62,6 +64,10 @@ class UserController extends Controller
 
         $user->telegram_password = $user->id . rand(1,9) . rand(100,999);
         $user->save();
+
+        try {
+            Notification::send($user, new UserWelcome($user, $request->password));
+        } catch (\Exception $e) {}
 
         flash('کاربر با موفقیت اضافه شد.')->success();
         return redirect()->route('admin.user');

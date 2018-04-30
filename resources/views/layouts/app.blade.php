@@ -67,8 +67,8 @@
                                 @endguest
                             @endif
                         @endforeach
-                            <li><a class="nav-link{{ Request::segment(1) == 'file' ? ' active' : '' }}" href="{{ route('file') }}"><i class="fa fa-files-o"></i> کالای دیجیتال</a></li>
-                            <li><a class="nav-link{{ Request::segment(1) == 'product' ? ' active' : '' }}" href="{{ route('product') }}"><i class="fa fa-cubes"></i>فروشگاه</a></li>
+                            <li><a class="nav-link{{ Request::segment(1) == 'file' ? ' active' : '' }}" href="{{ route('file') }}"><i class="fa fa-files-o"></i> نرم افزار</a></li>
+                            <li><a class="nav-link{{ Request::segment(1) == 'product' ? ' active' : '' }}" href="{{ route('product') }}"><i class="fa fa-cubes"></i> سخت افزار</a></li>
                     </ul>
 
                     <!-- Left Side Of Navbar -->

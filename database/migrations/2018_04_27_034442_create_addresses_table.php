@@ -23,8 +23,8 @@ class CreateAddressesTable extends Migration
             $table->string('zip_code')->nullable();
             $table->text('address')->nullable();
             $table->text('location')->nullable();
-            $table->string('province')->nullable();
-            $table->string('city')->nullable();
+            $table->integer('province_id')->nullable();
+            $table->integer('city_id')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
             $table->softDeletes();

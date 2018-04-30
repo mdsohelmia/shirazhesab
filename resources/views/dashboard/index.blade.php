@@ -103,7 +103,7 @@
                 $('#num_of_dues').html(response.data.num_of_dues);
                 $('#num_of_tickets').html(response.data.num_of_tickets);
             }).catch(function (error) {
-                alert(error);
+                console.log(error);
             });
         });
     </script>

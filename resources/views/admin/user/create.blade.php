@@ -106,6 +106,7 @@
                                     <select name="level" id="level" class="form-control{{ $errors->has('level') ? ' is-invalid' : '' }}">
                                         <option value="user"{{old('level') == 'user' ? ' selected' : ''}}>کاربر</option>
                                         <option value="staff"{{old('level') == 'staff' ? ' selected' : ''}}>کارمند</option>
+                                        <option value="admin"{{old('level') == 'marketer' ? ' selected' : ''}}>بازاریاب</option>
                                         <option value="admin"{{old('level') == 'admin' ? ' selected' : ''}}>مدیر</option>
                                     </select>
                                 </div>
