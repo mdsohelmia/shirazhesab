@@ -31,72 +31,94 @@
                     @include('sidebar')
                 </div>
                 <div class="col-md-9">
-                    @if($ticket->status == 'lock')
-                    <div class="alert alert-warning">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                        این تیکت با توجه به نظر مدیریت و کارشناسان قفل شده است و جهت پیگیری مجدد نیاز است تیکت جدیدی ایجاد نمایید.
+                    <div class="row">
+                        <div class="col-md-10">
+                            @if($ticket->status == 'lock')
+                                <div class="alert alert-warning">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    این تیکت با توجه به نظر مدیریت و کارشناسان قفل شده است و جهت پیگیری مجدد نیاز است تیکت جدیدی ایجاد نمایید.
+                                </div>
+                            @elseif($ticket->status == 'close')
+                                <div class="alert alert-info">
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                    این تیکت به صورت سیستمی یا توسط خود شما بسته شده است، لذا در صورتی که می خواهید آن را مجدد پیگیری کنید برای آن پاسخ ثبت کنید.
+                                </div>
+                                <div id="accordion">
+                                    <div class="card card-info mb-2">
+                                        <div class="card-header" data-toggle="collapse" href="#collapseOne"><i class="fa fa-arrow-circle-left"></i> پاسخ به تیکت</div>
+
+                                        <div class="card-body collapse" id="collapseOne" data-parent="#accordion">
+                                            <form method="POST" action="{{ route('ticket.replay',['id'=> $ticket->id]) }}" enctype="multipart/form-data">
+                                                @csrf
+                                                @method('post')
+                                                <div class="form-group">
+                                                    <label for="text">متن</label>
+                                                    <textarea name="text" id="text" class="form-control{{ $errors->has('text') ? ' is-invalid' : '' }}">{{old('text')}}</textarea>
+                                                    @if ($errors->has('text'))
+                                                        <span class="invalid-feedback"><strong>{{ $errors->first('text') }}</strong></span>
+                                                    @endif
+                                                </div>
+                                                <button type="submit" class="btn btn-primary btn-mobile btn-sm"><i class="fa fa-send"></i>ارسال پاسخ</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            @elseif($ticket->status == 'done')
+                                <div class="alert alert-success">
+                                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                    تیکت شما در این تیکت بررسی شده است و شما آن را به عنوان انجام شده ثبت کرده اید، در صورت نیاز به پیگیری مجدد تیکت جدیدی ثبت نمایید.
+                                </div>
+                            @else
+                                @if($ticket->status == 'waiting')
+                                    <div class="alert alert-info">
+                                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                        تیکت شما توسط کارشناس مشاهده شده است و در دست پیگیری است، لذا صبور باشید.
+                                    </div>
+                                @endif
+                                <div id="accordion">
+                                    <div class="card card-info mb-2">
+                                        <div class="card-header" data-toggle="collapse" href="#collapseOne"><i class="fa fa-arrow-circle-left"></i> پاسخ به تیکت</div>
+
+                                        <div class="card-body collapse" id="collapseOne" data-parent="#accordion">
+                                            <form method="POST" action="{{ route('ticket.replay',['id'=> $ticket->id]) }}" enctype="multipart/form-data">
+                                                @csrf
+                                                @method('post')
+                                                <div class="form-group">
+                                                    <label for="text">متن</label>
+                                                    <textarea name="text" id="text" class="form-control{{ $errors->has('text') ? ' is-invalid' : '' }}">{{old('text')}}</textarea>
+                                                    @if ($errors->has('text'))
+                                                        <span class="invalid-feedback"><strong>{{ $errors->first('text') }}</strong></span>
+                                                    @endif
+                                                </div>
+                                                <button type="submit" class="btn btn-primary btn-mobile btn-sm"><i class="fa fa-send"></i>ارسال پاسخ</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="col-md-2">
+
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle btn-mobile" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    اقدام های تیکت
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#"><i class="fa fa-paperclip"></i> افزودن پیوست</a>
+                                    <a class="dropdown-item" href="#"><i class="fa fa-close"></i> بستن</a>
+                                    <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> قفل کردن</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    @elseif($ticket->status == 'close')
-                        <div class="alert alert-info">
-                            <i class="fa fa-info-circle" aria-hidden="true"></i>
-                            این تیکت به صورت سیستمی یا توسط خود شما بسته شده است، لذا در صورتی که می خواهید آن را مجدد پیگیری کنید برای آن پاسخ ثبت کنید.
-                        </div>
-                        <div id="accordion">
-                            <div class="card card-info mb-2">
-                                <div class="card-header" data-toggle="collapse" href="#collapseOne"><i class="fa fa-arrow-circle-left"></i> پاسخ به تیکت</div>
 
-                                <div class="card-body collapse" id="collapseOne" data-parent="#accordion">
-                                    <form method="POST" action="{{ route('ticket.replay',['id'=> $ticket->id]) }}" enctype="multipart/form-data">
-                                        @csrf
-                                        @method('post')
-                                        <div class="form-group">
-                                            <label for="text">متن</label>
-                                            <textarea name="text" id="text" class="form-control{{ $errors->has('text') ? ' is-invalid' : '' }}">{{old('text')}}</textarea>
-                                            @if ($errors->has('text'))
-                                                <span class="invalid-feedback"><strong>{{ $errors->first('text') }}</strong></span>
-                                            @endif
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-mobile btn-sm"><i class="fa fa-send"></i>ارسال پاسخ</button>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                    @elseif($ticket->status == 'done')
-                        <div class="alert alert-success">
-                            <i class="fa fa-check-circle" aria-hidden="true"></i>
-                            تیکت شما در این تیکت بررسی شده است و شما آن را به عنوان انجام شده ثبت کرده اید، در صورت نیاز به پیگیری مجدد تیکت جدیدی ثبت نمایید.
-                        </div>
-                    @else
-                        @if($ticket->status == 'waiting')
-                            <div class="alert alert-info">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                تیکت شما توسط کارشناس مشاهده شده است و در دست پیگیری است، لذا صبور باشید.
-                            </div>
-                        @endif
-                        <div id="accordion">
-                            <div class="card card-info mb-2">
-                                <div class="card-header" data-toggle="collapse" href="#collapseOne"><i class="fa fa-arrow-circle-left"></i> پاسخ به تیکت</div>
-
-                                <div class="card-body collapse" id="collapseOne" data-parent="#accordion">
-                                    <form method="POST" action="{{ route('ticket.replay',['id'=> $ticket->id]) }}" enctype="multipart/form-data">
-                                        @csrf
-                                        @method('post')
-                                        <div class="form-group">
-                                            <label for="text">متن</label>
-                                            <textarea name="text" id="text" class="form-control{{ $errors->has('text') ? ' is-invalid' : '' }}">{{old('text')}}</textarea>
-                                            @if ($errors->has('text'))
-                                                <span class="invalid-feedback"><strong>{{ $errors->first('text') }}</strong></span>
-                                            @endif
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-mobile btn-sm"><i class="fa fa-send"></i>ارسال پاسخ</button>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                    @endif
+                    <div class="row">
+                        <div class="col"><div class="pull-left">{{ $replays->links() }}</div></div>
+                    </div>
                         @foreach($replays as $replay)
+
                             @if($replay->user_id == $ticket->user_id)
                                 <div class="card card-default ml-5 mb-2">
                                     @else
@@ -115,15 +137,15 @@
                                         </div>
                                         @endforeach
                                         {{ $replays->links() }}
-                    <div class="card card-default mb-2">
-                        <div class="card-header">
-                            {{ $ticket->title }} ({{$ticket->user->name}})
-                            <span class="badge badge-dark pull-left">{{ jDate::forge($ticket->created_at)->ago() }}</span>
-                        </div>
-                        <div class="card-body">
-                            {!! nl2br($ticket->text)  !!}
-                        </div>
-                    </div>
+                                        <div class="card card-default mb-2">
+                                            <div class="card-header">
+                                                {{ $ticket->title }} ({{$ticket->user->name}})
+                                                <span class="badge badge-dark pull-left">{{ jDate::forge($ticket->created_at)->ago() }}</span>
+                                            </div>
+                                            <div class="card-body">
+                                                {!! nl2br($ticket->text)  !!}
+                                            </div>
+                                        </div>
 
 
                 </div>

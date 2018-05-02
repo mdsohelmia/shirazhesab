@@ -50,7 +50,7 @@
                                 <td class="text-center">
                                     {{ $invoice->user->name }}
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" dir="ltr">
                                     {{  jDate::forge($invoice->invoice_at)->format('Y/m/d H:i:s')  }}
                                 </td>
                                 <td class="text-center">
