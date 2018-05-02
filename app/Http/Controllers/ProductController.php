@@ -35,8 +35,12 @@ class ProductController extends Controller
     public function delete($id, Request $request)
     {
         $this->middleware(['auth','admin']);
+
         $product = Product::findOrFail($id);
+        $item = Item::findOrFail($product->item_id);
+        $item->delete();
         $product->delete();
+
         flash('کالا با موفقیت حذف شد.')->success();
         return redirect()->route('product');
     }
@@ -83,6 +87,8 @@ class ProductController extends Controller
 
         $item = new Item();
         $item->title = $product->title;
+        $item->post = 'yes';
+        $item->asset = 'yes';
         $item->category_id  = config('platform.product-category-id');
         if($request->off_price) {
             $item->sale_price = $product->off_price;
@@ -125,6 +131,8 @@ class ProductController extends Controller
 
         if($item = Item::find($product->item_id)) {
             $item->title = $product->title;
+            $item->post = 'yes';
+            $item->asset = 'yes';
             if($request->off_price) {
                 $item->sale_price = $product->off_price;
             } else {

@@ -86,6 +86,20 @@
                             @endif
                         </div>
                         <div class="form-group">
+                            <label for="period">دوره زمانی</label>
+                            <div class="input-group mb-2 ml-sm-2">
+                                <input id="period" type="text" dir="ltr" class="form-control{{ $errors->has('period') ? ' is-invalid' : '' }}" name="period" value="{{ old('period') }}">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">روز</div>
+                                </div>
+                            </div>
+                            @if ($errors->has('period'))
+                                <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('period') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                        <div class="form-group">
                             <label for="category_id">دسته</label>
 
                             <select name="category_id" id="category_id" class="form-control">
@@ -136,6 +150,19 @@
                             @if ($errors->has('cart'))
                                 <span class="invalid-feedback">
                                         <strong>{{ $errors->first('cart') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="post">فروش پستی</label>
+
+                            <select name="post" id="enable" class="form-control">
+                                <option value="yes"{{ old('post') == 'yes'  ? ' selected' : '' }}>بله</option>
+                                <option value="no"{{ old('post') == 'no' ? ' selected' : '' }}>خیر</option>
+                            </select>
+                            @if ($errors->has('post'))
+                                <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('post') }}</strong>
                                     </span>
                             @endif
                         </div>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Ticket;
 use App\TicketReplay;
 use Illuminate\Http\Request;
-use App\CategoryOption;
+use App\Category;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
@@ -43,10 +43,10 @@ class TicketController extends Controller
         $replay = new TicketReplay();
         $replay->user_id = Auth::user()->id;
         $replay->text = $request->text;
-        $replay->ticket_id = $id;
+        $replay->ticket_id = $ticket->id;
         $replay->save();
 
-        $ticket->updated_at = date("Y-m-d H:i:s");
+
         if(Auth::user()->id == $ticket->user_id) {
             $ticket->status = 'user';
             $user = User::findOrFail(config('platform.main-admin-user-id'));

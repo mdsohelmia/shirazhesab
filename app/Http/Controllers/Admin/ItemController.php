@@ -51,7 +51,6 @@ class ItemController extends Controller
             'title' => 'required',
             'category_id' => 'required',
         ])->validate();
-
         $item = new Item();
         $item->category_id = $request->category_id;
         $item->title = $request->title;
@@ -62,6 +61,8 @@ class ItemController extends Controller
         $item->enable = $request->enable;
         $item->asset = $request->asset;
         $item->cart = $request->cart;
+        $item->post = $request->post;
+        $item->period = $request->period;
         $item->save();
         flash('آیتم با موفقیت اضافه شد.')->success();
         return redirect()->route('admin.item');
@@ -83,6 +84,8 @@ class ItemController extends Controller
         $item->enable = $request->enable;
         $item->asset = $request->asset;
         $item->cart = $request->cart;
+        $item->post = $request->post;
+        $item->period = $request->period;
         $item->save();
         flash('آیتم با موفقیت ویرایش شد.')->success();
         return redirect()->route('admin.item');

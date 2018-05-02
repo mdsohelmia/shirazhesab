@@ -22,7 +22,7 @@ class CreateInvoicesTable extends Migration
             $table->dateTime('due_at')->nullable();
             $table->dateTime('paid_at')->nullable();
             $table->dateTime('next_at')->nullable();
-            $table->string('period')->nullable(); //1m,2m,3m,4m,5m,6m,7 1y,2y,3y,4y,5y,6y
+            $table->integer('period')->nullable();
             $table->text('note')->nullable();
             $table->string('attachment')->nullable();
             $table->decimal('total', 15, 0);

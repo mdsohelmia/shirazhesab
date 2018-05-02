@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use Validator;
+use App\City;
+use App\Province;
 
 class CartController extends Controller
 {
@@ -76,8 +78,14 @@ class CartController extends Controller
             flash("برای تکمیل سفارش نیاز است شما در سایت ثبت نام کنید لذا ابتدا فرم زیر را تکمیل کنید، در صورتی که پیش تر در سایت ثبت نام کردید از گزینه ورود استفاده نمایید.")->warning();
             return redirect()->route('register');
         } else {
+            $provinces = Province::all();
+            if(Auth::user()->province_id) {
+                $cities = City::where('province_id', Auth::user()->province_id)->get();
+            } else {
+                $cities = City::where('province_id', $provinces->first()->id)->get();
+            }
             $addresses = Address::where('user_id', Auth::user()->id);
-            return view('cart.information',['addresses' => $addresses]);
+            return view('cart.information',['addresses' => $addresses,'provinces' => $provinces, 'cities' => $cities]);
         }
     }
 
@@ -88,6 +96,8 @@ class CartController extends Controller
             'phone' => 'required|numeric',
             'zip_code' => 'required|numeric',
             'address' => 'required|string',
+            'city_id' => 'required|numeric',
+            'province_id' => 'required|numeric',
         ])->validate();
         $user = User::findOrFail(Auth::user()->id);
         session(['name' => $request->name]);
@@ -95,6 +105,8 @@ class CartController extends Controller
         $user->phone = $request->phone;
         $user->zip_code = $request->zip_code;
         $user->address = $request->address;
+        $user->city_id = $request->city_id;
+        $user->province_id = $request->province_id;
         $user->save();
         return redirect()->route('cart.checkout');
     }
@@ -123,7 +135,8 @@ class CartController extends Controller
             $invoice->zip_code = Auth::user()->zip_code;
             $invoice->phone = Auth::user()->phone;
             $invoice->address = Auth::user()->address;
-
+            $invoice->city_id = Auth::user()->city_id;
+            $invoice->province_id = Auth::user()->province_id;
             $invoice->save();
 
             foreach (Cart::content() as $item) {

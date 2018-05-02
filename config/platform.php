@@ -35,6 +35,7 @@ return [
     'cart-type' => 'order',
     'file-category-id' => '10',
     'product-category-id' => '17',
-    '' => '',
-    '' => '',
+    'api-password' => 'greatpass4u',
+    'due-days' => '5',
+    '' => ''
 ];

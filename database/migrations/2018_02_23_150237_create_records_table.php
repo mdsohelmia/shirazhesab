@@ -25,7 +25,7 @@ class CreateRecordsTable extends Migration
             $table->decimal('discount', 15, 0)->nullable();
             $table->integer('coupon_id')->nullable();
             $table->dateTime('next_at')->nullable();
-            $table->integer('next_invoice_id')->nullable();
+            $table->integer('next_record_id')->nullable();
             $table->longText('options')->nullable();
             $table->timestamps();
         });

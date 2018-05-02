@@ -115,6 +115,8 @@ class UserController extends Controller
             $user->gender = $request->gender;
             $user->phone = $request->phone;
             $user->address = $request->address;
+            $user->city_id = $request->city_id;
+            $user->province_id = $request->province_id;
             $user->save();
             flash('اطلاعات تکمیلی با موفقیت بروز شد.')->success();
             return redirect()->route('profile');

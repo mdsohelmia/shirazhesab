@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\InvoiceCreated;
 use App\Transaction;
+use Carbon\Carbon;
 
 class InvoiceController extends Controller
 {
@@ -78,6 +79,8 @@ class InvoiceController extends Controller
         }
         if($request->period) {
             $invoice->period = $request->period;
+            $dut_at = new Carbon($invoice->due_at);
+            $invoice->next_at = $dut_at->addDays($request->period);
         }
         $invoice->save();
         foreach ($request->record as $record_request) {
@@ -167,6 +170,8 @@ class InvoiceController extends Controller
         }
         if($request->period) {
             $invoice->period = $request->period;
+            $dut_at = new Carbon($invoice->due_at);
+            $invoice->next_at = $dut_at->addDays($request->period);
         }
         $invoice->save();
         foreach ($request->record as $record_request) {
