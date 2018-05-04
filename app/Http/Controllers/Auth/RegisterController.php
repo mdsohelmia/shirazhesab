@@ -70,6 +70,7 @@ class RegisterController extends Controller
             'mobile' => $data['mobile'],
             'password' => Hash::make($data['password']),
         ]);
+        $user->register_ip = request()->ip();
         $user->telegram_password = $user->id . rand(1,9) . rand(100,999);
         $user->save();
         return $user;

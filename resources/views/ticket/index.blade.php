@@ -26,6 +26,31 @@
                     @include('sidebar')
                 </div>
                 <div class="col-md-9">
+                    <form action="{{ route('ticket.search') }}" method="post">
+                        @csrf
+                        @method('post')
+                        <div class="row">
+                            <div class="col-md-7 mb-2">
+                                    <input type="text" name="keyword" value=" {{ old('keyword') }}" class="form-control" id="keyword" placeholder="جستجو...">
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <select name="status" class="form-control">
+                                    <option value="any">انتخاب وضعیت</option>
+                                    <option value="staff">پاسخ پشتیبان</option>
+                                    <option value="user">پاسخ کاربر</option>
+                                    <option value="waiting">در انتظار بررسی</option>
+                                    <option value="close">بسته شده</option>
+                                    <option value="lock">قفل شده</option>
+                                    <option value="done">انجام شده</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 mb-2">
+                                <button type="submit" class="btn btn-primary btn-mobile"><i class="fa fa-search"></i> جستجو</button>
+                            </div>
+                        </div>
+
+
+                    </form>
                     <div class="card card-default">
                         <div class="card-header">
                             تیکت های شما
@@ -50,24 +75,36 @@
                                             <br />
                                             {{ $ticket->user->name }}
                                             <br />
+                                            <span class="badge badge-info">
                                             @if($ticket->status == 'open')
-                                                جدید
+                                                    <i class="fa fa-certificate" aria-hidden="true"></i>
+                                                    جدید
                                             @endif
                                             @if($ticket->status == 'close')
+                                                    <i class="fa fa-window-close"></i>
                                                 بسته شده
                                             @endif
                                             @if($ticket->status == 'staff')
+                                                    <i class="fa fa-user-md" aria-hidden="true"></i>
                                                 پاسخ پشتیبانی
                                             @endif
                                             @if($ticket->status == 'user')
+                                                    <i class="fa fa-user"></i>
                                                 پاسخ کاربر
                                             @endif
                                             @if($ticket->status == 'waiting')
+                                                    <i class="fa fa-hourglass-start"></i>
                                                 در انتظار بررسی
                                             @endif
                                             @if($ticket->status == 'lock')
+                                                    <i class="fa fa-lock"></i>
                                                 قفل شده
                                             @endif
+                                            @if($ticket->status == 'done')
+                                                    <i class="fa fa-check"></i>
+                                                انجام شد
+                                            @endif
+                                            </span>
                                         </small>
                                     </div>
                                 </a>

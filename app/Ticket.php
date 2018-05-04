@@ -32,6 +32,11 @@ class Ticket extends Model
         return $query->where('user_id', $user_id);
     }
 
+    public function scopeOfStatus($query, $status)
+    {
+        return $query->where('status', $status);
+    }
+
     public function scopeOpen($query)
     {
         $query->whereIn('status',['staff', 'user', 'waiting']);

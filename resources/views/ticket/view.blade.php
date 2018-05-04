@@ -99,16 +99,29 @@
                                 </div>
                             @endif
                         </div>
-                        <div class="col-md-2">
-
+                        <div class="col-md-2 mb-1 mt-2">
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle btn-mobile" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     اقدام های تیکت
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#"><i class="fa fa-paperclip"></i> افزودن پیوست</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-close"></i> بستن</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> قفل کردن</a>
+
+                                    <a class="dropdown-item" href=""><i class="fa fa-paperclip"></i> افزودن پیوست</a>
+                                    @if($ticket->status != 'done' && $ticket->status != 'lock' && $ticket->status != 'close' && $ticket->status != 'waiting')
+                                        <a class="dropdown-item" href="{{ route('ticket.done', [$ticket->id]) }}"><i class="fa fa-check"></i> انجام شد</a>
+                                    @endif
+                                    @if($ticket->status != 'close' && $ticket->status != 'lock' && $ticket->status != 'done' && $ticket->status != 'waiting')
+                                        <a class="dropdown-item" href="{{ route('ticket.close', [$ticket->id]) }}"><i class="fa fa-window-close"></i> بستن</a>
+                                    @endif
+                                    @if(Auth::user()->level == 'admin' || Auth::user()->level == 'staff' || Auth::user()->level == 'marketer' )
+                                        @if($ticket->status != 'done' && $ticket->status != 'lock' && $ticket->status != 'close' && $ticket->status != 'waiting')
+                                        <a class="dropdown-item" href="{{ route('ticket.waiting', [$ticket->id]) }}"><i class="fa fa-hourglass-start"></i> انتظار</a>
+                                        @endif
+                                        @if($ticket->status != 'done' && $ticket->status != 'lock' && $ticket->status != 'close' && $ticket->status != 'waiting')
+                                            <a class="dropdown-item" href="{{ route('ticket.lock', [$ticket->id]) }}"><i class="fa fa-lock"></i> قفل کردن</a>
+                                        @endif
+                                        <a class="dropdown-item" href="{{ route('admin.invoice.create.user',[$ticket->user_id]) }}"><i class="fa fa-plus-circle"></i> ثبت فاکتور</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>

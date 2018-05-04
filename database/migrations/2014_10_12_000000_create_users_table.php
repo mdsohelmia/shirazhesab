@@ -55,6 +55,9 @@ class CreateUsersTable extends Migration
             $table->enum('national_card_file_verified',['yes','no'])->default('no');
             $table->enum('id_card_file_verified',['yes','no'])->default('no');
 
+            $table->ipAddress('register_ip')->nullable();
+            $table->ipAddress('last_ip')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

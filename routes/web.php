@@ -87,7 +87,7 @@ Route::get('/product/create', 'ProductController@create')->name('product.create'
 Route::post('/product/insert', 'ProductController@insert')->name('product.insert')->middleware('auth');
 Route::get('/product/edit/{id}', 'ProductController@edit')->name('product.edit')->middleware('auth');
 Route::post('/product/update/{id}', 'ProductController@update')->name('product.update')->middleware('auth');
-Route::delete('/product/update/{id}', 'ProductController@delete')->name('product.delete')->middleware('auth');
+Route::delete('/product/delete/{id}', 'ProductController@delete')->name('product.delete')->middleware('auth');
 
 Route::get('/product-image/create', 'ProductImageController@create')->name('product-image.create')->middleware('auth');
 Route::post('/product-image/insert', 'ProductImageController@insert')->name('product-image.insert')->middleware('auth');
@@ -109,6 +109,13 @@ Route::get('/ticket/create', 'TicketController@create')->name('ticket.create')->
 Route::post('/ticket/insert', 'TicketController@insert')->name('ticket.insert')->middleware('auth');
 Route::post('/ticket/replay/{id}', 'TicketController@replay')->name('ticket.replay')->middleware('auth');
 Route::get('/ticket/view/{id}', 'TicketController@view')->name('ticket.view')->middleware('auth');
+
+Route::get('/ticket/done/{id}', 'TicketController@done')->name('ticket.done')->middleware('auth');
+Route::get('/ticket/close/{id}', 'TicketController@close')->name('ticket.close')->middleware('auth');
+Route::get('/ticket/lock/{id}', 'TicketController@lock')->name('ticket.lock')->middleware('auth');
+Route::get('/ticket/open/{id}', 'TicketController@open')->name('ticket.open')->middleware('auth');
+Route::get('/ticket/waiting/{id}', 'TicketController@waiting')->name('ticket.waiting')->middleware('auth');
+Route::post('/ticket/search', 'TicketController@search')->name('ticket.search')->middleware('auth');
 
 Route::get('/item', 'ItemController@index')->name('item');
 

@@ -7,6 +7,8 @@ use App\Item;
 use Illuminate\Http\Request;
 use App\Category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 
 class ProductController extends Controller
 {
@@ -37,8 +39,9 @@ class ProductController extends Controller
         $this->middleware(['auth','admin']);
 
         $product = Product::findOrFail($id);
-        $item = Item::findOrFail($product->item_id);
-        $item->delete();
+        if($item = Item::find($product->item_id)) {
+            $item->delete();
+        }
         $product->delete();
 
         flash('کالا با موفقیت حذف شد.')->success();
@@ -113,7 +116,7 @@ class ProductController extends Controller
             'source' => 'required|image'
         ]);
 
-        $product = new Product();
+        $product = Product::fingOrFail($id);
         $product->title = $request->title;
         $product->category_id = $request->category_id;
         $product->description = $request->description;
