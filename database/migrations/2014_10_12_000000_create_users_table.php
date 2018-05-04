@@ -58,6 +58,8 @@ class CreateUsersTable extends Migration
             $table->ipAddress('register_ip')->nullable();
             $table->ipAddress('last_ip')->nullable();
 
+            $table->longText('options')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

@@ -37,7 +37,7 @@ class TicketCreated extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database', TelegramChannel::class, TextMessageChannel::class];
+        return ['mail', 'database', TextMessageChannel::class];
     }
 
     /**

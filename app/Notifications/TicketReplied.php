@@ -37,7 +37,7 @@ class TicketReplied extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database', TelegramChannel::class];
+        return ['mail', 'database'];
     }
 
     /**

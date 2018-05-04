@@ -49,10 +49,10 @@ class FileController extends Controller
     public function delete($id, Request $request)
     {
         $this->middleware(['auth','admin']);
-
         $file = File::findOrFail($id);
-        $item = Item::findOrFail($file->item_id);
-        $item->delete();
+        if($item = Item::find($file->item_id)) {
+            $item->delete();
+        }
         $file->delete();
 
         flash('فایل با موفقیت حذف شد.')->success();

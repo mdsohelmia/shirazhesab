@@ -16,7 +16,7 @@ class CreateAccountsTable extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->integer('order')->default(1);
+            $table->integer('order')->nullable();
             $table->enum('enable',['yes','no'])->default('yes');
             $table->timestamps();
             $table->softDeletes();

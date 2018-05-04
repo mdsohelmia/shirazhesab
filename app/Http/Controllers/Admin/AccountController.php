@@ -44,6 +44,7 @@ class AccountController extends Controller
     {
         Validator::make($request->all(), [
             'title' => 'required|string',
+            'order' => 'required|numeric',
         ])->validate();
         $account = new Account();
         $account->title = $request->title;

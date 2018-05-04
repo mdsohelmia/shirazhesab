@@ -35,7 +35,7 @@ class InvoiceCreated extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database', TextMessageChannel::class, TelegramChannel::class];
+        return ['mail', 'database', TextMessageChannel::class];
     }
 
     /**

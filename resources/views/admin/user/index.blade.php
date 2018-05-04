@@ -21,13 +21,13 @@
                     <div class="card-body">
 
                         <table id="users" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
-                            <thead>
-                                <th>شماره</th>
-                                <th>نام</th>
-                                <th>ایمیل</th>
-                                <th>شماره همراه</th>
-                                <th>موجودی</th>
-                                <th>اقدام ها</th>
+                            <thead class="thead-dark">
+                                <th scope="col">شماره</th>
+                                <th scope="col">نام</th>
+                                <th scope="col">ایمیل</th>
+                                <th scope="col">شماره همراه</th>
+                                <th scope="col">موجودی</th>
+                                <th scope="col">اقدام ها</th>
                             </thead>
                         </table>
                     </div>

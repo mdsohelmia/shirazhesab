@@ -244,7 +244,8 @@ class InvoiceController extends Controller
                 $transaction->email = Auth::user()->email;
                 $transaction->mobile = Auth::user()->mobile;
                 $transaction->user_id = Auth::user()->id;
-                $transaction->category_id = 13;
+                $transaction->gateway = session('gateway');
+                $transaction->category_id = config('platform.free-pay-category-id');
                 $transaction->invoice_id = $invoice->id;
                 $transaction->description = "پرداخت فاکتور شماره:" . $invoice->id;
                 $transaction->amount = $invoice->total;
@@ -323,7 +324,8 @@ class InvoiceController extends Controller
                 $transaction->email = $user->email;
                 $transaction->mobile = $user->mobile;
                 $transaction->user_id = $user->id;
-                $transaction->category_id = 13;
+                $transaction->gateway = session('gateway');
+                $transaction->category_id = config('platform.free-pay-category-id');
                 $transaction->invoice_id = $invoice->id;
                 $transaction->description = "پرداخت فاکتور شماره:" . $invoice->id;
                 $transaction->amount = $invoice->total;

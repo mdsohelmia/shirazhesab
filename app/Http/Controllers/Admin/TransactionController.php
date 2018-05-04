@@ -27,7 +27,7 @@ class TransactionController extends Controller
 
     public function index()
     {
-        $transactions = Transaction::with(['category','account'])->orderBy('created_at', 'desc')->paginate(config('platform.file-per-page'));
+        $transactions = Transaction::with(['category','account'])->orderBy('transaction_at', 'desc')->paginate(config('platform.file-per-page'));
         return view('admin.transaction.index',['transactions' => $transactions]);
     }
 

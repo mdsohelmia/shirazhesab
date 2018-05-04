@@ -23,23 +23,23 @@
                     <table class="table table-striped table-bordered table-hover">
                         <thead class="thead-dark">
                         <tr>
+                            <th scope="col" class="text-center">شماره</th>
                             <th scope="col" class="text-center">عنوان</th>
                             <th scope="col" class="text-center">حجم تراکنش</th>
-                            <th scope="col" class="text-center">API Key</th>
                             <th scope="col" class="text-center">اقدام ها</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($gateways as $gateway)
                             <tr>
+                                <td class="text-center">
+                                    {{ $gateway->id }}
+                                </td>
                                 <td scope="row" class="text-center">
                                     {{ $gateway->title }}
                                 </td>
                                 <td class="text-center">
                                     <span-component web-address="{{ route('admin.gateway.inventory', [$gateway->id]) }}"></span-component>
-                                </td>
-                                <td class="text-center">
-                                    {{ $gateway->api_key }}
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.gateway.edit',[$gateway->id]) }}" class="btn btn-success btn-sm btn-mobile"><i class="fa fa-edit"></i> ویرایش</a>
