@@ -54,4 +54,12 @@ class LoginController extends Controller
     {
         return Config('platform.redirectTo');
     }
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->username() => 'required',
+            'password' => 'required',
+            'g-recaptcha-response' => 'required|captcha',
+        ]);
+    }
 }

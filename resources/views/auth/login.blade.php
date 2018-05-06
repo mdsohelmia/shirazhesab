@@ -40,7 +40,13 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label @lang('platform.input-pull')">کد ضد ربات</label>
 
+                            <div class="col-md-7">
+                                {!! app('captcha')->display() !!}
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="checkbox">

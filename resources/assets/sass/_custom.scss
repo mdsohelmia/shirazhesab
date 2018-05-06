@@ -84,3 +84,18 @@ table.table-bordered.dataTable td:last-child, table.table-bordered.dataTable th:
   color: var(--gray-dark);
 }
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+.rc-anchor-checkbox-label {
+
+  font-family: "Vazir", Tahoma;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+}
+.rc-anchor-normal .rc-anchor-pt, .rc-anchor-invisible .rc-anchor-pt, .rc-anchor-compact .rc-anchor-pt {
+
+  color: #9b9b9b;
+  font-family: "Vazir", Tahoma;
+  font-size: 8px;
+  font-weight: 400;
+
+}
