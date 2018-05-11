@@ -6,7 +6,18 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
-                <div class="card-header">فراموشی رمز عبور</div>
+                <div class="card-header">روش اول: از طریق شماره همراه</div>
+
+                <div class="card-body">
+                    شما می توانید با ارسال عدد 99 به
+                    {{ config('textmessage.gateway') }}
+                    رمز عبور جدید را دریافت کنید.
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 mt-2">
+            <div class="card card-default">
+                <div class="card-header">روش دوم:از طریق ایمیل</div>
 
                 <div class="card-body">
                     @if (session('status'))

@@ -25,6 +25,8 @@ return [
     'contact-us-page-id' => '3',
     'about-us-page-id' => '2',
     'index-page-id' => '1',
+    'tos-page-id' => '3',
+    'complaint-page-id' => '2',
     'main-admin-user-id' => '1',
     'category-type' => 'Account,Item,Invoice,Article,Expense,Income,Ticket,File,Forum,Setting,Product',
     'min-payment-price' => '1000',

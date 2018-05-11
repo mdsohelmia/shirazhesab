@@ -39,6 +39,17 @@ class CreatePagesTable extends Migration
             'text' => 'Contact US',
             'access' => 'public',
         ]);
+
+        DB::table('pages')->insert([
+            'title' => 'قوانین و مقررات',
+            'text' => 'Law TOS',
+            'access' => 'public',
+        ]);
+        DB::table('pages')->insert([
+            'title' => 'ثبت شکایت',
+            'text' => 'Complaint',
+            'access' => 'public',
+        ]);
     }
 
     /**

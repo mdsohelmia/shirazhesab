@@ -38,6 +38,8 @@ Route::get('/page/{id}', 'PageController@index')->name('page');
 Route::get('/page/{id}/{slug}', 'PageController@slug')->name('page-slug');
 Route::get('/about-us', 'PageController@aboutUs')->name('about-us');
 Route::get('/contact-us', 'PageController@contactUs')->name('contact-us');
+Route::get('/tos', 'PageController@tos')->name('tos');
+Route::get('/complaint', 'PageController@complaint')->name('complaint');
 
 
 Route::get('/free-pay', 'FreePayController@index')->name('free-pay');

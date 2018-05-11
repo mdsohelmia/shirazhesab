@@ -23,6 +23,17 @@ class Invoice extends Model
     {
         return $this->hasMany('App\Record');
     }
+
+    public function installments()
+    {
+        return $this->hasMany('App\InvoiceInstallment');
+    }
+
+    public function attachments()
+    {
+        return $this->hasMany('App\InvoiceAttachment');
+    }
+
     public function transactions()
     {
         return $this->hasMany('App\Transaction');

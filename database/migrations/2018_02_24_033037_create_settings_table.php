@@ -139,6 +139,25 @@ class CreateSettingsTable extends Migration
             'type' => 'select-table',
             'options' => 'pages,title'
         ]);
+
+        DB::table('settings')->insert([
+            'title' => 'قوانین و مقررات',
+            'category_id' => '4',
+            'description' => '',
+            'key' => 'platform.tos-page-id',
+            'type' => 'select-table',
+            'options' => 'pages,title'
+        ]);
+        DB::table('settings')->insert([
+            'title' => 'ثبت شکایت',
+            'category_id' => '5',
+            'description' => '',
+            'key' => 'platform.complaint-page-id',
+            'type' => 'select-table',
+            'options' => 'pages,title'
+        ]);
+
+
         DB::table('settings')->insert([
             'title' => 'مدیر اصلی سایت',
             'category_id' => '1',

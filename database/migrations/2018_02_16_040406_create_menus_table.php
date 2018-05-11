@@ -43,6 +43,18 @@ class CreateMenusTable extends Migration
             'icon' => 'fa fa-info-circle',
             'position' => 'navbar-bottom',
         ]);
+        DB::table('menus')->insert([
+            'title' => 'قوانین و مقررات',
+            'route' => 'tos',
+            'icon' => 'fa fa-balance-scale',
+            'position' => 'navbar-bottom',
+        ]);
+        DB::table('menus')->insert([
+            'title' => 'ثبت شکایت',
+            'route' => 'complaint',
+            'icon' => 'fa fa-wpforms',
+            'position' => 'navbar-bottom',
+        ]);
     }
 
     /**
